@@ -31,8 +31,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = (values: z.infer<typeof formSchema>) => {
+    function getFormData(object:any) {
+      const formData = new FormData();
+      Object.keys(object).forEach(key => formData.append(key, object[key]));
+      return formData;
+  }
     fetch("http://localhost:8000/register/signin", {
-
+      method: "POST",
+      body: getFormData(values),
+    }).then(res=>res.json()).then((data)=>{
+      console.log(data)
     })
     setToken("1234");
     navigate("/");
@@ -40,10 +48,6 @@ const Login = () => {
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
   });
 
   return (
