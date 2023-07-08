@@ -31,9 +31,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (values: z.infer<typeof formSchema>) => {
+    fetch("http://localhost:8000/register/signin", {
+
+    })
     setToken("1234");
     navigate("/");
+    console.log(values)
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

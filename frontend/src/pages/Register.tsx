@@ -99,9 +99,9 @@ const Register = () => {
   });
 
   return (
-    <div className="flex flex-col items-center h-screen gap-3 my-12 ">
+    <div className="flex flex-col justify-center items-center gap-3 my-12 ">
       <div className="text-2xl font-black ">Ekipa</div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         <div className="font-bold text-2xl">Create A New Account!</div>
         <div className="text-gray-500 text-sm">
           please enter your credentials properly to create a new account in
@@ -122,7 +122,7 @@ const Register = () => {
                   <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="username"
                       className="w-56 sm:w-96"
                       {...field}
                     />
@@ -139,7 +139,7 @@ const Register = () => {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="password"
                       className="w-56 sm:w-96"
                       {...field}
                     />
@@ -158,7 +158,7 @@ const Register = () => {
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="firstname"
                       className="w-56 sm:w-50"
                       {...field}
                     />
@@ -175,7 +175,7 @@ const Register = () => {
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="secondname"
                       className="w-56 sm:w-50"
                       {...field}
                     />
@@ -192,7 +192,7 @@ const Register = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="id@gmail.com"
                       type="email"
                       className="w-56 sm:w-72"
                       {...field}
@@ -212,7 +212,7 @@ const Register = () => {
                   <FormLabel>phone number</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="77xxxxxx9"
                       className="w-56 sm:w-50"
                       {...field}
                     />
@@ -229,7 +229,7 @@ const Register = () => {
                   <FormLabel>Address</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="Address"
                       className="w-56 sm:w-96"
                       {...field}
                     />
@@ -246,7 +246,7 @@ const Register = () => {
                   <FormLabel>City</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="city"
                       className="w-56 sm:w-32"
                       {...field}
                     />
@@ -265,7 +265,7 @@ const Register = () => {
                   <FormLabel>State</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="state"
                       className="w-56 sm:w-64"
                       {...field}
                     />
@@ -282,7 +282,7 @@ const Register = () => {
                   <FormLabel>Country</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="country"
                       className="w-56 sm:w-60"
                       {...field}
                     />
@@ -299,7 +299,7 @@ const Register = () => {
                   <FormLabel>Zip-Code</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="619-xxx"
                       className="w-56 sm:w-60"
                       {...field}
                     />
@@ -378,7 +378,7 @@ const Register = () => {
                   <FormLabel>Skills</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="skill1,skill2,skill3"
                       className="w-56 sm:w-full"
                       {...field}
                     />
