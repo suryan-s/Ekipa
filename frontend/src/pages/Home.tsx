@@ -4,6 +4,7 @@ import MyTeam from "@/components/myteam/MyTeam";
 import Tasks from "@/components/tasks/Tasks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Teams from "@/components/teams/Teams";
 
 export default function Home() {
   return (
@@ -50,22 +51,26 @@ function TabSection() {
   return (
     <Tabs defaultValue="tasks" className="mt-6">
       <TabsList>
+        <TabsTrigger value="teams">Teams</TabsTrigger>
         <TabsTrigger value="myteam">My Team</TabsTrigger>
         <TabsTrigger value="tasks">Tasks</TabsTrigger>
-        <TabsTrigger value="notifications">Notifications</TabsTrigger>
         <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
+        <TabsTrigger value="notifications">Notifications</TabsTrigger>
         <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
       </TabsList>
+      <TabsContent value="teams">
+        <Teams />
+      </TabsContent>
       <TabsContent value="myteam">
         <MyTeam />
       </TabsContent>
       <TabsContent value="tasks">
         <Tasks />
       </TabsContent>
-      <TabsContent value="notifications">Notifications</TabsContent>
       <TabsContent value="mytasks">
         <MyTasks />
       </TabsContent>
+      <TabsContent value="notifications">Notifications</TabsContent>
       <TabsContent value="teamchat">Teamchat</TabsContent>
     </Tabs>
   );
