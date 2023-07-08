@@ -25,7 +25,6 @@ const formSchema = z.object({
   }),
 });
 
-
 const Login = () => {
   const { setToken } = useContext(AuthContext);
 
@@ -47,44 +46,57 @@ const Login = () => {
     <div className="flex flex-col justify-center items-center h-screen gap-3">
       <div className="text-2xl font-black ">Ekipa</div>
       <div className="flex flex-col items-center">
-      <div className="font-bold text-2xl">Welcome Back!</div>
-      <div className="text-gray-500 text-sm">Log Into your Account</div>
+        <div className="font-bold text-2xl">Welcome Back!</div>
+        <div className="text-gray-500 text-sm">Log Into your Account</div>
       </div>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2 w-56 sm:w-96">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input  placeholder="enter username" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem> 
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input placeholder="enter password" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem> 
-          )}
-        />
-        <Button type="submit" className="w-56 sm:w-96 bg-purple-800 text-white" >Submit</Button>
-      </form>
-    </Form>
-    <div className="flex flex-row text-xs font-normal gap-2 text-gray-500"><div>New to Ekipa</div><a href="/register" className="font-medium text-orange-800">Create a new account?</a></div>
+        <form
+          onSubmit={form.handleSubmit(handleLogin)}
+          className="space-y-2 w-56 sm:w-96"
+        >
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="enter username" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input placeholder="enter password" {...field} />
+                </FormControl>
+                <FormDescription>
+                  This is your public display name.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type="submit"
+            className="w-56 sm:w-96 bg-purple-800 text-white"
+          >
+            Submit
+          </Button>
+        </form>
+      </Form>
+      <div className="flex flex-row text-xs font-normal gap-2 text-gray-500">
+        <div>New to Ekipa</div>
+        <a href="/register" className="font-medium text-orange-800">
+          Create a new account?
+        </a>
+      </div>
     </div>
   );
 };

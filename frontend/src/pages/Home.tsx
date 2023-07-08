@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import MyTasks from "@/components/mytasks/MyTasks";
 import MyTeam from "@/components/myteam/MyTeam";
 import Tasks from "@/components/tasks/Tasks";
