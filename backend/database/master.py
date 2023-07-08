@@ -193,7 +193,7 @@ async def get_all_task():
     """
     result = None
     try:
-        query = """SELECT task_id,task_name,  FROM Task"""
+        query = """SELECT task_id,task_name,status,task_type FROM Task"""
         result = await execute("query", query)
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")
