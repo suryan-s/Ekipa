@@ -1,10 +1,14 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Routes from "./Routes";
 
 function App() {
   return (
-    <>
-      <Button>Click me</Button>
-    </>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
