@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   return (
@@ -10,6 +11,20 @@ export default function Home() {
           Welcome Onboard!
         </h2>
         <DetailGrid />
+        <Tabs defaultValue="account" className="mt-6">
+          <TabsList>
+            <TabsTrigger value="myteam">My Team</TabsTrigger>
+            <TabsTrigger value="tasks">Tasks</TabsTrigger>
+            <TabsTrigger value="notifications">Notifications</TabsTrigger>
+            <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
+            <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
+          </TabsList>
+          <TabsContent value="myteam">My Team</TabsContent>
+          <TabsContent value="tasks">Tasks</TabsContent>
+          <TabsContent value="notifications">Notifications</TabsContent>
+          <TabsContent value="mytasks">My Tasks</TabsContent>
+          <TabsContent value="teamchat">Teamchat</TabsContent>
+        </Tabs>
       </main>
     </>
   );
