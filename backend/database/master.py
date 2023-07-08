@@ -57,6 +57,7 @@ async def create_tables() -> None:
 
 
 async def add_user(
+        userid: str,
         username: str,
         hashed_password: str,
         email: str,
@@ -80,13 +81,13 @@ async def add_user(
         status = 409
         return status
     query = """
-    INSERT INTO User (
+    INSERT INTO User (user_id,
     username, password_hash, email, first_name,
     last_name, phone_number, address, city, state,
      country, zip_code, team_name, role_id)
-      values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+      values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     """
-    args = (username, hashed_password, email, first_name,
+    args = (userid,username, hashed_password, email, first_name,
             last_name, phone, address, city, state, country,
             zip_code, team_name, role)
     result = await execute("query", query, args)
