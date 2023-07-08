@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 type Props = {
   children?: ReactNode;
@@ -6,11 +6,15 @@ type Props = {
 
 type IAuthContext = {
   authenticated: boolean;
+  token: string;
+  setToken: (newToken: string) => void;
   setAuthenticated: (newState: boolean) => void;
 };
 
 const initialValue = {
   authenticated: false,
+  token: localStorage.getItem("token") || "",
+  setToken: () => {},
   setAuthenticated: () => {},
 };
 
@@ -21,9 +25,15 @@ const AuthProvider = ({ children }: Props) => {
   const [authenticated, setAuthenticated] = useState(
     initialValue.authenticated
   );
+  const [token, setToken] = useState(initialValue.token);
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
 
   return (
-    <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
+    <AuthContext.Provider
+      value={{ authenticated, token, setToken, setAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );
