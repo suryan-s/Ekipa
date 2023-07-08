@@ -1,9 +1,18 @@
 import os.path
 import sqlite3
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend import app
 from backend.database.master import create_tables
 
+# Configure CORS settings
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # TODO -
 # 1. Sign in / Sign up page
