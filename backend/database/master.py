@@ -146,3 +146,18 @@ async def get_roles():
         print(f"The SQL statement failed with error: {e}")
         return e
     return result
+
+
+async def get_all_task():
+    """
+    Gets all the tasks from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT * FROM Task"""
+        result = await execute("query", query)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
