@@ -133,15 +133,17 @@ async def get_userid(username: str):
     return result
 
 
-async def get_all_users():
+async def get_all_team_members(username: str):
     """
     Gets all the users from the database.
     :return:
     """
     result = None
     try:
-        query = """SELECT user_id, username, first_name, last_name FROM User"""
-        result = await execute("query", query)
+        query1 = """SELECT team_name FROM User WHERE user_id = ?"""
+        result1 = await execute("query", query1, (username,))
+        query2 = """SELECT user_id, username, first_name, last_name FROM User WHERE team_name = ? AND username != ?"""
+        result = await execute("query", query2, (username, username))
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")
         return e
