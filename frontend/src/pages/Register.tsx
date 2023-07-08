@@ -40,7 +40,7 @@ const formSchema = z.object({
   email: z.string().min(1, {
     message: "please enter valid email",
   }),
-  phonenumber: z.string().min(7, {
+  phone_number: z.string().min(7, {
     message: "phonenumber must be at least 7 characters.",
   }),
   address: z.string().min(1, {
@@ -58,7 +58,7 @@ const formSchema = z.object({
   country: z.string().min(2, {
     message: "country shouls not be empty",
   }),
-  teamname: z.string({
+  team_name: z.string({
     required_error: "please select a team name.",
   }),
   role: z.string({
@@ -84,7 +84,7 @@ const Register = () => {
         console.log(data);
       });
     setToken("1234");
-    console.log(values);
+    console.log(JSON.stringify(values));
     navigate("/");
   };
 
@@ -93,9 +93,6 @@ const Register = () => {
     defaultValues: {
       username: "",
     },
-    // password: z.string().min(8, {
-    //   message: "Username must be at least 8 characters.",
-    // }),
   });
 
   return (
@@ -206,7 +203,7 @@ const Register = () => {
           <div className="sm:flex flex-row gap-7">
             <FormField
               control={form.control}
-              name="phonenumber"
+              name="phone_number"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>phone number</FormLabel>
@@ -313,7 +310,7 @@ const Register = () => {
             <div className="w-56 sm:w-96">
               <FormField
                 control={form.control}
-                name="teamname"
+                name="team_name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>teamname</FormLabel>
