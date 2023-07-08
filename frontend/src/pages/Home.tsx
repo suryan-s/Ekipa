@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import MyTeam from "@/components/myteam/MyTeam";
 import Tasks from "@/components/tasks/Tasks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -54,7 +55,9 @@ function TabSection() {
         <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
         <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
       </TabsList>
-      <TabsContent value="myteam">My Team</TabsContent>
+      <TabsContent value="myteam">
+        <MyTeam />
+      </TabsContent>
       <TabsContent value="tasks">
         <Tasks />
       </TabsContent>
