@@ -1,20 +1,14 @@
-import { DataTable } from "@/components/ui/DataTable";
-import { Payment, columns } from "@/lib/dashboard/columns";
+import { DataTable } from "@/components/dashboard/DataTable";
+import { columns } from "@/components/dashboard/columns";
+import { taskSchema } from "@/components/dashboard/data/schema";
 import { useEffect, useState } from "react";
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
-  ];
+import { Task, tasks } from "@/components/dashboard/data/tasks";
+import { z } from "zod";
+async function getData() {
+  return z.array(taskSchema).parse(tasks);
 }
 export default function Tasks() {
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<Task[]>([]);
   useEffect(() => {
     getData().then(setData);
   }, []);
