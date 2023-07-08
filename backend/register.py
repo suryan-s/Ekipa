@@ -194,7 +194,7 @@ async def register(request: Request, user: User):
         role = int(incoming["role"])
         skills = incoming["skills"]
         res = await add_user(
-            user_id, hashed_password, email_id,
+            user_id, username, hashed_password, email_id,
             first_name, last_name, phone, address, city,
             state, country, zipcode, team_name, role, skills
         )
@@ -211,7 +211,6 @@ async def register(request: Request, user: User):
                 "access_token": "",
                 "token_type": "bearer",
             }
-        print("User created successfully " + str(res))
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
             data={"sub": user_id}, expires_delta=access_token_expires
@@ -223,7 +222,6 @@ async def register(request: Request, user: User):
             "message": "User created successfully",
         }
     except Exception as error:
-        print("Registration failed ", error)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
