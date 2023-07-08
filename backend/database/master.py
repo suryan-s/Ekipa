@@ -133,6 +133,21 @@ async def get_userid(username: str):
     return result
 
 
+async def get_all_users():
+    """
+    Gets all the users from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT user_id, username, first_name, last_name FROM User"""
+        result = await execute("query", query)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
+
+
 async def get_roles():
     """
     Gets the roles from the database.
@@ -148,6 +163,21 @@ async def get_roles():
     return result
 
 
+async def get_all_teams():
+    """
+    Gets all the teams from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT * FROM Team"""
+        result = await execute("query", query)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
+
+
 async def get_all_task():
     """
     Gets all the tasks from the database.
@@ -155,8 +185,24 @@ async def get_all_task():
     """
     result = None
     try:
-        query = """SELECT * FROM Task"""
+        query = """SELECT task_id,task_name,  FROM Task"""
         result = await execute("query", query)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
+
+
+async def get_my_task(userid: int):
+    """
+    Gets all the user tasks from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT * FROM Task WHERE assignee_id = ?"""
+        args = (userid,)
+        result = await execute("query", query, args)
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")
         return e
