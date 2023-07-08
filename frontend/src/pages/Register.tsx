@@ -37,6 +37,9 @@ const formSchema = z.object({
   lastname: z.string().min(1, {
     message: "lastname must be at least 1 characters.",
   }),
+  email: z.string().min(1, {
+    message: "please enter valid email",
+  }),
   phonenumber: z.string().min(7, {
     message: "phonenumber must be at least 7 characters.",
   }),
@@ -110,7 +113,7 @@ const Register = () => {
           onSubmit={form.handleSubmit(handleRegister)}
           className="space-y-8"
         >
-          <div className="flex flex-row gap-7">
+          <div className="sm:flex flex-row gap-7">
             <FormField
               control={form.control}
               name="username"
@@ -146,7 +149,7 @@ const Register = () => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-7">
+          <div className="sm:flex flex-row gap-7">
             <FormField
               control={form.control}
               name="firstname"
@@ -156,7 +159,7 @@ const Register = () => {
                   <FormControl>
                     <Input
                       placeholder="shadcn"
-                      className="w-56 sm:w-96"
+                      className="w-56 sm:w-50"
                       {...field}
                     />
                   </FormControl>
@@ -173,7 +176,25 @@ const Register = () => {
                   <FormControl>
                     <Input
                       placeholder="shadcn"
-                      className="w-56 sm:w-96"
+                      className="w-56 sm:w-50"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      type="email"
+                      className="w-56 sm:w-72"
                       {...field}
                     />
                   </FormControl>
@@ -182,7 +203,7 @@ const Register = () => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-7">
+          <div className="sm:flex flex-row gap-7">
             <FormField
               control={form.control}
               name="phonenumber"
@@ -235,7 +256,7 @@ const Register = () => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-7">
+          <div className="sm:flex flex-row gap-7">
             <FormField
               control={form.control}
               name="state"
@@ -288,7 +309,7 @@ const Register = () => {
               )}
             />
           </div>
-          <div className="flex flex-row gap-7">
+          <div className="sm:flex flex-row gap-7">
             <div className="w-56 sm:w-96">
               <FormField
                 control={form.control}
