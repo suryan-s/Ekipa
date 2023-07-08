@@ -34,3 +34,19 @@ async def get_all_task_list(token: str = Depends(get_current_token)):
             detail="No tasks found",
         )
     return {"status": HTTP_200_OK, "message": "Tasks found", "data": result}
+
+
+@router.get('/myTaskList')
+async def get_my_task_list(token: str = Depends(get_current_token)):
+    """
+    Returns all the tasks done by the user from the database.
+    Args:
+        token:
+    """
+    user_id = await get_user_id_from_token(token)
+    if user_id is None:
+        raise HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing authorization token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
