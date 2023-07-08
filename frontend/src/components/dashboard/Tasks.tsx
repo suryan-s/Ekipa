@@ -1,5 +1,5 @@
 import { DataTable } from "@/components/dashboard/DataTable";
-import { columns } from "@/components/dashboard/columns";
+import { columns } from "@/components/dashboard/dataTable/columns";
 import { taskSchema } from "@/components/dashboard/data/schema";
 import { useEffect, useState } from "react";
 import { Task, tasks } from "@/components/dashboard/data/tasks";
