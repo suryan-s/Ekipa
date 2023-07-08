@@ -22,12 +22,16 @@ export const labels = [
     value: "documentation",
     label: "Documentation",
   },
+  {
+    value: "research",
+    label: "Research",
+  },
 ];
 
 export const statuses = [
   {
-    value: "backlog",
-    label: "Backlog",
+    value: "overdue",
+    label: "Overdue",
     icon: QuestionMarkCircledIcon,
   },
   {
@@ -41,8 +45,8 @@ export const statuses = [
     icon: StopwatchIcon,
   },
   {
-    value: "done",
-    label: "Done",
+    value: "completed",
+    label: "Completed",
     icon: CheckCircledIcon,
   },
   {
