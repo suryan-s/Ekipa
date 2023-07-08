@@ -1,10 +1,4 @@
-export type Task = {
-  id: string;
-  title: string;
-  status: string;
-  label: string;
-  priority: string;
-};
+import { Task } from "./schema";
 export const tasks: Array<Task> = [
   {
     id: "TASK-8782",
@@ -18,7 +12,7 @@ export const tasks: Array<Task> = [
     id: "TASK-7878",
     title:
       "Try to calculate the EXE feed, maybe it will index the multi-byte pixel!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "medium",
   },
@@ -33,7 +27,7 @@ export const tasks: Array<Task> = [
     id: "TASK-5562",
     title:
       "The SAS interface is down, bypass the open-source pixel so we can back up the PNG bandwidth!",
-    status: "backlog",
+    status: "overdue",
     label: "feature",
     priority: "medium",
   },
@@ -49,7 +43,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1280",
     title:
       "Use the digital TLS panel, then you can transmit the haptic system!",
-    status: "done",
+    status: "completed",
     label: "bug",
     priority: "high",
   },
@@ -57,7 +51,7 @@ export const tasks: Array<Task> = [
     id: "TASK-7262",
     title:
       "The UTF8 application is down, parse the neural bandwidth so we can back up the PNG firewall!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "high",
   },
@@ -88,7 +82,7 @@ export const tasks: Array<Task> = [
     id: "TASK-5618",
     title:
       "Generating the driver won't do anything, we need to index the online SSL application!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "medium",
   },
@@ -96,14 +90,14 @@ export const tasks: Array<Task> = [
     id: "TASK-6699",
     title:
       "I'll transmit the wireless JBOD capacitor, that should hard drive the SSD feed!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "medium",
   },
   {
     id: "TASK-2858",
     title: "We need to override the online UDP bus!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "medium",
   },
@@ -111,7 +105,7 @@ export const tasks: Array<Task> = [
     id: "TASK-9864",
     title:
       "I'll reboot the 1080p FTP panel, that should matrix the HEX hard drive!",
-    status: "done",
+    status: "completed",
     label: "bug",
     priority: "high",
   },
@@ -149,7 +143,7 @@ export const tasks: Array<Task> = [
   {
     id: "TASK-9885",
     title: "We need to compress the auxiliary VGA driver!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
@@ -157,7 +151,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3216",
     title:
       "Transmitting the transmitter won't do anything, we need to compress the virtual HDD sensor!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "medium",
   },
@@ -228,7 +222,7 @@ export const tasks: Array<Task> = [
     id: "TASK-5581",
     title:
       "I'll synthesize the digital COM pixel, that should transmitter the UTF8 protocol!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "high",
   },
@@ -251,7 +245,7 @@ export const tasks: Array<Task> = [
     id: "TASK-9892",
     title:
       "If we back up the application, we can get to the UDP application through the multi-byte THX capacitor!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "high",
   },
@@ -266,7 +260,7 @@ export const tasks: Array<Task> = [
     id: "TASK-9744",
     title:
       "Use the back-end IP card, then you can input the solid state hard drive!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "low",
   },
@@ -274,7 +268,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1376",
     title:
       "Generating the alarm won't do anything, we need to generate the mobile IP capacitor!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "low",
   },
@@ -298,7 +292,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1533",
     title:
       "You can't input the firewall without overriding the wireless TCP firewall!",
-    status: "done",
+    status: "completed",
     label: "bug",
     priority: "high",
   },
@@ -377,7 +371,7 @@ export const tasks: Array<Task> = [
     id: "TASK-8790",
     title:
       "I'll back up the optical COM alarm, that should alarm the RSS capacitor!",
-    status: "done",
+    status: "completed",
     label: "bug",
     priority: "medium",
   },
@@ -392,7 +386,7 @@ export const tasks: Array<Task> = [
   {
     id: "TASK-7342",
     title: "Use the neural CLI card, then you can parse the online port!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "low",
   },
@@ -408,7 +402,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1606",
     title:
       "I'll generate the bluetooth PNG firewall, that should pixel the SSL driver!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "medium",
   },
@@ -432,14 +426,14 @@ export const tasks: Array<Task> = [
     id: "TASK-9581",
     title:
       "You can't index the port without hacking the cross-platform XSS monitor!",
-    status: "backlog",
+    status: "overdue",
     label: "documentation",
     priority: "low",
   },
   {
     id: "TASK-8806",
     title: "We need to bypass the back-end SSL panel!",
-    status: "done",
+    status: "completed",
     label: "bug",
     priority: "medium",
   },
@@ -447,7 +441,7 @@ export const tasks: Array<Task> = [
     id: "TASK-6542",
     title:
       "Try to quantify the RSS firewall, maybe it will quantify the open-source system!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "low",
   },
@@ -470,7 +464,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1075",
     title:
       "Backing up the driver won't do anything, we need to parse the redundant RAM pixel!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "medium",
   },
@@ -478,7 +472,7 @@ export const tasks: Array<Task> = [
     id: "TASK-1427",
     title:
       "Use the auxiliary PCI circuit, then you can calculate the cross-platform interface!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "high",
   },
@@ -494,7 +488,7 @@ export const tasks: Array<Task> = [
     id: "TASK-4309",
     title:
       "If we generate the system, we can get to the TCP sensor through the optical GB pixel!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "medium",
   },
@@ -518,7 +512,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3360",
     title:
       "You can't quantify the program without synthesizing the neural OCR interface!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "medium",
   },
@@ -526,7 +520,7 @@ export const tasks: Array<Task> = [
     id: "TASK-9887",
     title:
       "Use the auxiliary ASCII sensor, then you can connect the solid state port!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "medium",
   },
@@ -558,7 +552,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3652",
     title:
       "The SQL interface is down, override the optical bus so we can program the ASCII interface!",
-    status: "backlog",
+    status: "overdue",
     label: "feature",
     priority: "low",
   },
@@ -589,14 +583,14 @@ export const tasks: Array<Task> = [
     id: "TASK-7253",
     title:
       "Programming the capacitor won't do anything, we need to bypass the neural IB hard drive!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
   {
     id: "TASK-9739",
     title: "We need to hack the multi-byte HDD bus!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "medium",
   },
@@ -612,7 +606,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3922",
     title:
       "You can't back up the capacitor without generating the wireless PCI program!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "low",
   },
@@ -627,7 +621,7 @@ export const tasks: Array<Task> = [
   {
     id: "TASK-5814",
     title: "We need to calculate the 1080p AGP feed!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
@@ -650,7 +644,7 @@ export const tasks: Array<Task> = [
   {
     id: "TASK-4463",
     title: "We need to copy the solid state AGP monitor!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "low",
   },
@@ -674,7 +668,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3838",
     title:
       "I'll bypass the online TCP application, that should panel the AGP system!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
@@ -697,21 +691,21 @@ export const tasks: Array<Task> = [
     id: "TASK-7585",
     title:
       "If we calculate the hard drive, we can get to the SSL program through the multi-byte CSS microchip!",
-    status: "backlog",
+    status: "overdue",
     label: "feature",
     priority: "low",
   },
   {
     id: "TASK-6319",
     title: "We need to copy the multi-byte SCSI program!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
   {
     id: "TASK-4369",
     title: "Try to input the SCSI bus, maybe it will generate the 1080p pixel!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
@@ -750,7 +744,7 @@ export const tasks: Array<Task> = [
     id: "TASK-3939",
     title:
       "Use the back-end SQL firewall, then you can connect the neural hard drive!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "low",
   },
@@ -758,7 +752,7 @@ export const tasks: Array<Task> = [
     id: "TASK-2007",
     title:
       "I'll input the back-end USB protocol, that should bandwidth the PCI system!",
-    status: "backlog",
+    status: "overdue",
     label: "bug",
     priority: "high",
   },
@@ -766,7 +760,7 @@ export const tasks: Array<Task> = [
     id: "TASK-7516",
     title:
       "Use the primary SQL program, then you can generate the auxiliary transmitter!",
-    status: "done",
+    status: "completed",
     label: "documentation",
     priority: "medium",
   },
@@ -774,7 +768,7 @@ export const tasks: Array<Task> = [
     id: "TASK-6906",
     title:
       "Try to back up the DRAM system, maybe it will reboot the online transmitter!",
-    status: "done",
+    status: "completed",
     label: "feature",
     priority: "high",
   },
