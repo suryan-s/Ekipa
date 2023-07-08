@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS Task (
     assigned_by_id INT NOT NULL,
     team_id INT NOT NULL,
     due_date DATE NOT NULL,
-    status VARCHAR(50) DEFAULT 'ToDO', -- Status can be: 'todo', 'in progress', 'completed','overdue','cancelled'
+    status VARCHAR(50) DEFAULT 'ToDo', -- Status can be: 'todo', 'in progress', 'completed','overdue','cancelled'
     completed_date DATE,
     task_priority INTEGER CHECK (task_priority >= 1 AND task_priority <= 5),
     points INTEGER DEFAULT 0,
