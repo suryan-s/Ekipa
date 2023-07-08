@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS User (
     country VARCHAR(255) NOT NULL,
     zip_code VARCHAR(255) NOT NULL,
     team_name VARCHAR(255),
+    skills TEXT NOT NULL,
     role_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

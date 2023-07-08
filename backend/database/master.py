@@ -136,7 +136,7 @@ async def get_roles():
     """
     result = None
     try:
-        query = """SELECT * FROM Role"""
+        query = """SELECT * FROM Roles"""
         result = await execute("query", query)
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")

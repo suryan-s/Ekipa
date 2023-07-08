@@ -26,9 +26,7 @@ async def startup():
     Returns:
         None
     """
-    conn = sqlite3.connect(os.path.join("backend", "database", "ekipa.db"))
-    if conn:
-        conn.close()
+    sqlite3.connect(os.path.join("backend", "database", "ekipa.db"))
     await create_tables()
 
 

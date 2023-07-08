@@ -25,23 +25,24 @@ async def get_current_token(token: str = Depends(oauth2_scheme)):
 
 
 @router.get("/roles")
-async def get_roles_api(token: str = Depends(get_current_token)):
+# async def get_roles_api(token: str = Depends(get_current_token)):
+async def get_roles_api():
     """
     Returns the roles from database.
     Args:
         token:
     """
-    user_id = await get_user_id_from_token(token)
-    if user_id is None:
-        raise HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid or missing authorization token",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    # user_id = await get_user_id_from_token(token)
+    # if user_id is None:
+    #     raise HTTPException(
+    #         status_code=HTTP_401_UNAUTHORIZED,
+    #         detail="Invalid or missing authorization token",
+    #         headers={"WWW-Authenticate": "Bearer"},
+    #     )
     result = await get_roles()
     if isinstance(result, Exception):
         raise HTTPException(
             status_code=HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
         ) from result
-    return list(result)
+    return {"value": result}

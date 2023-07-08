@@ -182,12 +182,13 @@ async def register(request: Request, user: User):
         zipcode = incoming["zipcode"]
         team_name = incoming["team_name"]
         role = int(incoming["role"])
+        skills = incoming["skills"]
         res = await add_user(
             user_id, hashed_password, email_id,
             first_name, last_name, phone, address, city,
             state, country, zipcode, team_name, role
         )
-        print("add user: ",res)
+        print("add user: ", res)
         if res == 409:
             # raise HTTPException(
             #         status_code=status.HTTP_409_CONFLICT,
