@@ -4,7 +4,11 @@ import sqlite3
 from dbutils.pooled_db import PooledDB
 
 # Create a connection pool
-pool = PooledDB(creator=sqlite3, database=os.path.join("ekipa.db"), maxconnections=10)
+pool = PooledDB(
+    creator=sqlite3,
+    database=os.path.join("backend", "database", "ekipa.db"),
+    maxconnections=10
+)
 
 
 async def execute(mode: str, query: str, args: tuple = None) -> list | None:

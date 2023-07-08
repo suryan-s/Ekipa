@@ -26,7 +26,10 @@ async def startup():
     Returns:
         None
     """
-    sqlite3.connect(os.path.join("backend", "database", "ekipa.db"))
+    if os.path.exists(os.path.join("backend", "database", "ekipa.db")):
+        pass
+    else:
+        sqlite3.connect(os.path.join("backend", "database", "ekipa.db"))
     await create_tables()
 
 
