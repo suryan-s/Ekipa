@@ -178,6 +178,7 @@ async def register(request: Request, user: User):
 
     try:
         incoming = await request.json()
+        print(incoming)
         user_id = secrets.token_hex(8)
         username = incoming["username"]
         hashed_password = str(get_password_hash(incoming["password"]))
@@ -222,6 +223,7 @@ async def register(request: Request, user: User):
             "message": "User created successfully",
         }
     except Exception as error:
+        print(error)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
