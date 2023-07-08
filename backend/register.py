@@ -185,7 +185,7 @@ async def register(request: Request, user: User):
         role = int(incoming["role"])
         skills = incoming["skills"]
         res = await add_user(
-            user_id, username, hashed_password, email_id,
+            user_id, hashed_password, email_id,
             first_name, last_name, phone, address, city,
             state, country, zipcode, team_name, role
         )
