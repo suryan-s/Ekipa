@@ -51,7 +51,7 @@ const Login = () => {
       <div className="text-gray-500 text-sm">Log Into your Account</div>
       </div>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-2 w-56 sm:w-96">
         <FormField
           control={form.control}
           name="username"
@@ -59,7 +59,7 @@ const Login = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input className="w-96" placeholder="enter username" {...field} />
+                <Input  placeholder="enter username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem> 
@@ -81,7 +81,7 @@ const Login = () => {
             </FormItem> 
           )}
         />
-        <Button type="submit" className="w-96 bg-purple-800 text-white" >Submit</Button>
+        <Button type="submit" className="w-56 sm:w-96 bg-purple-800 text-white" >Submit</Button>
       </form>
     </Form>
     </div>
