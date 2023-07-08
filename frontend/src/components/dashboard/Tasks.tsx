@@ -1,4 +1,4 @@
-import { DataTable } from "@/components/dashboard/DataTable";
+import { DataTable } from "@/components/dashboard/dataTable/DataTable";
 import { columns } from "@/components/dashboard/dataTable/columns";
 import { taskSchema } from "@/components/dashboard/data/schema";
 import { useEffect, useState } from "react";
