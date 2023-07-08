@@ -6,7 +6,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 export default function Navbar() {
+  const { setToken } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    setToken(null);
+  };
   return (
     <nav className="flex items-center justify-between flex-wrap w-full p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -26,10 +41,22 @@ export default function Navbar() {
           </Popover>
         </div>
         <div>
-          <Avatar>
-            <AvatarImage src="https://github.com/suryan-s.png" />
-            <AvatarFallback>SS</AvatarFallback>
-          </Avatar>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src="https://github.com/suryan-s.png" />
+                <AvatarFallback>SS</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLogOut()}>
+                Log Out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </nav>

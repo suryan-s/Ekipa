@@ -12,8 +12,6 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Button>Click home</Button>
-      <Button onClick={() => handleLogOut()}>Log out</Button>
     </>
   );
 }
