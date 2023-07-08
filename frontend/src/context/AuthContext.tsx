@@ -5,35 +5,29 @@ type Props = {
 };
 
 type IAuthContext = {
-  authenticated: boolean;
-  token: string;
-  setToken: (newToken: string) => void;
-  setAuthenticated: (newState: boolean) => void;
+  token: string | null;
+  setToken: (newToken: string | null) => void;
+  roles: string[];
 };
 
 const initialValue = {
-  authenticated: false,
-  token: localStorage.getItem("token") || "",
+  token: localStorage.getItem("token") || null,
   setToken: () => {},
-  setAuthenticated: () => {},
+  roles: [],
 };
 
 const AuthContext = createContext<IAuthContext>(initialValue);
 
 const AuthProvider = ({ children }: Props) => {
   //Initializing an auth state with false value (unauthenticated)
-  const [authenticated, setAuthenticated] = useState(
-    initialValue.authenticated
-  );
   const [token, setToken] = useState(initialValue.token);
+  const roles: string[] = initialValue.roles;
   useEffect(() => {
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", token || "");
   }, [token]);
 
   return (
-    <AuthContext.Provider
-      value={{ authenticated, token, setToken, setAuthenticated }}
-    >
+    <AuthContext.Provider value={{ token, setToken, roles }}>
       {children}
     </AuthContext.Provider>
   );

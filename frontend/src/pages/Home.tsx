@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
-  const { setAuthenticated } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
 
   const handleLogOut = () => {
-    setAuthenticated(false);
+    setToken(null);
   };
   return (
     <>

@@ -23,12 +23,12 @@ const formSchema = z.object({
 });
 
 const Register = () => {
-  const { setAuthenticated } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleRegister = (values: z.infer<typeof formSchema>) => {
-    setAuthenticated(true);
+    setToken("1234");
     console.log(values);
     navigate("/");
   };

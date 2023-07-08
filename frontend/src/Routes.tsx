@@ -6,9 +6,9 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 
 const PrivateRoutes = () => {
-  const { authenticated } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
-  if (!authenticated) return <Navigate to="/login" replace />;
+  if (!token) return <Navigate to="/login" replace />;
 
   return <Outlet />;
 };
