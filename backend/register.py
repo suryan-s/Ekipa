@@ -32,7 +32,17 @@ def get_password_hash(password):
     Returns:
         str: The hashed password.
     """
-    return pwd_context.hash(password)
+    try:
+        if len(password) == 0 or password is None:
+            return None
+        hashed_password = pwd_context.hash(str(password))
+        return hashed_password
+    except ValueError as error:
+        print("ValueError occurred at get password hash: ", error)
+        return None
+    except TypeError as error:
+        print("TypeError occurred at get password hash: ", error)
+        return None
 
 
 def verify_password(plain_password, hashed_password):
@@ -168,14 +178,13 @@ async def register(request: Request, user: User):
 
     try:
         incoming = await request.json()
-        print(incoming)
         user_id = secrets.token_hex(8)
         username = incoming["username"]
-        hashed_password = get_password_hash(incoming["password"])
+        hashed_password = str(get_password_hash(incoming["password"]))
         email_id = incoming["email"]
-        first_name = incoming["first_name"]
-        last_name = incoming["last_name"]
-        phone = incoming["phone"]
+        first_name = incoming["firstname"]
+        last_name = incoming["lastname"]
+        phone = incoming["phone_number"]
         address = incoming["address"]
         city = incoming["city"]
         state = incoming["state"]
@@ -187,25 +196,26 @@ async def register(request: Request, user: User):
         res = await add_user(
             user_id, hashed_password, email_id,
             first_name, last_name, phone, address, city,
-            state, country, zipcode, team_name, role
+            state, country, zipcode, team_name, role, skills
         )
-        print("add user: ", res)
+        if isinstance(res, Exception):
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Internal Server Error",
+            )
+
         if res == 409:
-            # raise HTTPException(
-            #         status_code=status.HTTP_409_CONFLICT,
-            #         detail="Username already exists",
-            #     )
             return {
                 "status": 409,
                 "message": "User already exists",
                 "access_token": "",
                 "token_type": "bearer",
             }
+        print("User created successfully " + str(res))
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
             data={"sub": user_id}, expires_delta=access_token_expires
         )
-        # get_user_id_from_token(access_token)
         return {
             "access_token": access_token,
             "token_type": "bearer",
@@ -213,7 +223,7 @@ async def register(request: Request, user: User):
             "message": "User created successfully",
         }
     except Exception as error:
-        # print(error)
+        print("Registration failed ", error)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
@@ -252,7 +262,7 @@ async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
         )
-    result = get_userid(username)
+    result = await get_userid(username)
     if result["status"] == "success":
         user_id = result["userid"]
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
