@@ -70,28 +70,33 @@ async def add_user(
         country: str,
         zip_code: str,
         team_name: str,
-        role: int
+        role: int,
+        skills: str
 ):
     """
     Adds a user to the database.
     :return:
     """
-    stat = get_userid(username)
+    stat = await get_userid(username)
     if stat['status'] == 'success':
         status = 409
         return status
     query = """
-    INSERT INTO User (user_id,
-    username, password_hash, email, first_name,
+    INSERT INTO User (
+    user_id, username, password_hash, email, first_name,
     last_name, phone_number, address, city, state,
-     country, zip_code, team_name, role_id)
-      values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    country, zip_code, team_name, skills, role_id
+    ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
     """
-    args = (userid,username, hashed_password, email, first_name,
+    args = (userid, username, hashed_password, email, first_name,
             last_name, phone, address, city, state, country,
-            zip_code, team_name, role)
-    result = await execute("query", query, args)
-    return None
+            zip_code, team_name, skills, role)
+    try:
+        result = await execute("query", query, args)
+        return result
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
 
 
 async def get_password(username: str):
