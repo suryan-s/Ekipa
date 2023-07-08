@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Tasks from "@/components/dashboard/Tasks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -11,33 +12,9 @@ export default function Home() {
           Welcome Onboard!
         </h2>
         <DetailGrid />
-        <Tabs defaultValue="account" className="mt-6">
-          <TabsList>
-            <TabsTrigger value="myteam">My Team</TabsTrigger>
-            <TabsTrigger value="tasks">Tasks</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
-            <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
-            <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
-          </TabsList>
-          <TabsContent value="myteam">My Team</TabsContent>
-          <TabsContent value="tasks">Tasks</TabsContent>
-          <TabsContent value="notifications">Notifications</TabsContent>
-          <TabsContent value="mytasks">My Tasks</TabsContent>
-          <TabsContent value="teamchat">Teamchat</TabsContent>
-        </Tabs>
+        <TabSection />
       </main>
     </>
-  );
-}
-
-function DetailGrid() {
-  return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      <DataCard title="Name" content="Ekipa" />
-      <DataCard title="Total Members" content="5" />
-      <DataCard title="Pending Tasks" content="5" />
-      <DataCard title="Completed Tasks" content="4" />
-    </div>
   );
 }
 
@@ -54,5 +31,36 @@ function DataCard({ title, content }: { title: string; content: string }) {
         {/* <Badge>+2.5%</Badge> */}
       </CardContent>
     </Card>
+  );
+}
+
+function DetailGrid() {
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
+      <DataCard title="Name" content="Ekipa" />
+      <DataCard title="Total Members" content="5" />
+      <DataCard title="Pending Tasks" content="5" />
+      <DataCard title="Completed Tasks" content="4" />
+    </div>
+  );
+}
+function TabSection() {
+  return (
+    <Tabs defaultValue="tasks" className="mt-6">
+      <TabsList>
+        <TabsTrigger value="myteam">My Team</TabsTrigger>
+        <TabsTrigger value="tasks">Tasks</TabsTrigger>
+        <TabsTrigger value="notifications">Notifications</TabsTrigger>
+        <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
+        <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
+      </TabsList>
+      <TabsContent value="myteam">My Team</TabsContent>
+      <TabsContent value="tasks">
+        <Tasks />
+      </TabsContent>
+      <TabsContent value="notifications">Notifications</TabsContent>
+      <TabsContent value="mytasks">My Tasks</TabsContent>
+      <TabsContent value="teamchat">Teamchat</TabsContent>
+    </Tabs>
   );
 }
