@@ -31,7 +31,7 @@ WHERE NOT EXISTS (
 
 -- User Table
 CREATE TABLE IF NOT EXISTS User (
-    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id VARCHAR(50) PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Task (
     task_name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     task_type VARCHAR(255) NOT NULL, -- Task type can be: 'bug', 'feature', 'documentation', 'research'
-    assignee_id INT ,
+    assignee_id VARCHAR(50),
     assigned_by_id INT NOT NULL,
     team_id INT NOT NULL,
     due_date DATE NOT NULL,
