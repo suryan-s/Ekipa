@@ -55,18 +55,15 @@ const formSchema = z.object({
   country: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  teamname: z
-    .string({
-      required_error: "please select a team name.",
-    }),
-  role: z
-    .string({
-      required_error: "please select a role.",
-    }),
+  teamname: z.string({
+    required_error: "please select a team name.",
+  }),
+  role: z.string({
+    required_error: "please select a role.",
+  }),
   skills: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-
 });
 
 const Register = () => {
@@ -75,6 +72,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = (values: z.infer<typeof formSchema>) => {
+    fetch("http://localhost:8000/register/signup", {
+      method: "POST",
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
     setToken("1234");
     console.log(values);
     navigate("/");
@@ -284,53 +289,65 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-row gap-7">
-         <div className="w-56 sm:w-96">
-          <FormField
-          control={form.control}
-          name="teamname"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>teamname</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value} >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select Your Team Name"/>
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">Unsigned</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        /></div>
-        <div className="w-56 sm:w-96">
-            <FormField
-          control={form.control}
-          name="role"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Role</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select Your Role" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="3">Team Member</SelectItem>
-                  <SelectItem value="2">Team Lead</SelectItem>
-                  <SelectItem value="1">Manager</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        /></div>
+            <div className="w-56 sm:w-96">
+              <FormField
+                control={form.control}
+                name="teamname"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>teamname</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Your Team Name" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="m@example.com">Unsigned</SelectItem>
+                        <SelectItem value="m@google.com">
+                          m@google.com
+                        </SelectItem>
+                        <SelectItem value="m@support.com">
+                          m@support.com
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
+            <div className="w-56 sm:w-96">
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Your Role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="3">Team Member</SelectItem>
+                        <SelectItem value="2">Team Lead</SelectItem>
+                        <SelectItem value="1">Manager</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
           <div className="w-56 sm:w-full">
             <FormField
               control={form.control}
