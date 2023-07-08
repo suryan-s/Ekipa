@@ -375,6 +375,7 @@ const Register = () => {
           </Button>
         </form>
       </Form>
+      <div className="flex flex-row text-xs font-normal gap-2 text-gray-500"><div>Already have an account</div><a href="/login" className="font-medium text-orange-800">Log In</a></div>
     </div>
   );
 };

@@ -84,6 +84,7 @@ const Login = () => {
         <Button type="submit" className="w-56 sm:w-96 bg-purple-800 text-white" >Submit</Button>
       </form>
     </Form>
+    <div className="flex flex-row text-xs font-normal gap-2 text-gray-500"><div>New to Ekipa</div><a href="/register" className="font-medium text-orange-800">Create a new account?</a></div>
     </div>
   );
 };
