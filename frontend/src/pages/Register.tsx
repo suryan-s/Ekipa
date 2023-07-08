@@ -29,31 +29,31 @@ const formSchema = z.object({
     message: "Username must be at least 2 characters.",
   }),
   password: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Password must be at least 8 characters.",
   }),
   firstname: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "firstname must be at least 2 characters.",
   }),
   lastname: z.string().min(1, {
-    message: "Username must be at least 2 characters.",
+    message: "lastname must be at least 1 characters.",
   }),
-  phonenumber: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  phonenumber: z.string().min(7, {
+    message: "phonenumber must be at least 7 characters.",
   }),
-  address: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  address: z.string().min(1, {
+    message: "address cannot be empty.",
   }),
-  zipcode: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  zipcode: z.string().min(1, {
+    message: "zipcode should not be empty",
   }),
-  city: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  city: z.string().min(1, {
+    message: "city should not be empty",
   }),
   state: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "state should not be empty",
   }),
   country: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "country shouls not be empty",
   }),
   teamname: z.string({
     required_error: "please select a team name.",
