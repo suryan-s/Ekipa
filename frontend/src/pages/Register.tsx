@@ -7,7 +7,7 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
+  // FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,10 +16,57 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  password: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  firstname: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  lastname: z.string().min(1, {
+    message: "Username must be at least 2 characters.",
+  }),
+  phonenumber: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  address: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  zipcode: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  city: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  state: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  country: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  teamname: z
+    .string({
+      required_error: "please select a team name.",
+    }),
+  role: z
+    .string({
+      required_error: "please select a role.",
+    }),
+  skills: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+
 });
 
 const Register = () => {
@@ -38,30 +85,280 @@ const Register = () => {
     defaultValues: {
       username: "",
     },
+    // password: z.string().min(8, {
+    //   message: "Username must be at least 8 characters.",
+    // }),
   });
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleRegister)} className="space-y-8">
-        <FormField
+    <div className="flex flex-col items-center h-screen gap-3 my-12 ">
+      <div className="text-2xl font-black ">Ekipa</div>
+      <div className="flex flex-col items-center">
+        <div className="font-bold text-2xl">Create A New Account!</div>
+        <div className="text-gray-500 text-sm">
+          please enter your credentials properly to create a new account in
+          ekipa
+        </div>
+      </div>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleRegister)}
+          className="space-y-8"
+        >
+          <div className="flex flex-row gap-7">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-96"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-96"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex flex-row gap-7">
+            <FormField
+              control={form.control}
+              name="firstname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-96"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-96"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex flex-row gap-7">
+            <FormField
+              control={form.control}
+              name="phonenumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>phone number</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-50"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-96"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-32"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex flex-row gap-7">
+            <FormField
+              control={form.control}
+              name="state"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>State</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-64"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Country</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-60"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="zipcode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Zip-Code</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-60"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex flex-row gap-7">
+         <div className="w-56 sm:w-96">
+          <FormField
           control={form.control}
-          name="username"
+          name="teamname"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              <FormLabel>teamname</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value} >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Your Team Name"/>
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="m@example.com">Unsigned</SelectItem>
+                  <SelectItem value="m@google.com">m@google.com</SelectItem>
+                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+        /></div>
+        <div className="w-56 sm:w-96">
+            <FormField
+          control={form.control}
+          name="role"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Role</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Your Role" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="3">Team Member</SelectItem>
+                  <SelectItem value="2">Team Lead</SelectItem>
+                  <SelectItem value="1">Manager</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        /></div>
+            </div>
+          <div className="w-56 sm:w-full">
+            <FormField
+              control={form.control}
+              name="skills"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Skills</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="shadcn"
+                      className="w-56 sm:w-full"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button
+            type="submit"
+            className="w-56 sm:w-full bg-purple-800 text-white"
+          >
+            Submit
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 };
 
