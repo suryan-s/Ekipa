@@ -57,25 +57,33 @@ CREATE TABLE IF NOT EXISTS Team (
     team_id INTEGER PRIMARY KEY AUTOINCREMENT,
     team_name VARCHAR(255) NOT NULL,
     points INTEGER DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    team_lead_id VARCHAR(50),
+    team_skill_set TEXT NOT NULL,
+--     FOREIGN KEY (team_lead_id) REFERENCES User(user_id),
+    UNIQUE (team_name)
 );
 
 -- Task Table
 CREATE TABLE IF NOT EXISTS Task (
     task_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    task_name VARCHAR(255) NOT NULL,
+    task_name VARCHAR(200) NOT NULL,
     description TEXT NOT NULL,
-    task_type VARCHAR(255) NOT NULL, -- Task type can be: 'bug', 'feature', 'documentation', 'research'
+    task_type VARCHAR(20) NOT NULL, -- Task type can be: 'bug', 'feature', 'documentation', 'research'
     assignee_id VARCHAR(50),
     assigned_by_id INT NOT NULL,
     team_id INT NOT NULL,
     due_date DATE NOT NULL,
-    status VARCHAR(255) DEFAULT '', -- Status can be: 'todo', 'in progress', 'completed','overdue','cancelled'
+    status VARCHAR(50) DEFAULT 'ToDO', -- Status can be: 'todo', 'in progress', 'completed','overdue','cancelled'
     completed_date DATE,
     task_priority INTEGER CHECK (task_priority >= 1 AND task_priority <= 5),
     points INTEGER DEFAULT 0,
+    stack TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (assignee_id) REFERENCES User(user_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
+
+-- Task Rejection Table
