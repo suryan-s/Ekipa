@@ -1,17 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
-  const { setToken } = useContext(AuthContext);
-
-  const handleLogOut = () => {
-    setToken(null);
-  };
   return (
     <>
       <Navbar />
+      <main className="max-w-screen-2xl mx-auto p-6">
+        <div className="">
+          <h2 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
+            Welcome Onboard!
+          </h2>
+        </div>
+      </main>
     </>
   );
 }
