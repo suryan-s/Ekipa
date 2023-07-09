@@ -374,3 +374,20 @@ async def get_message():
         print(f"The SQL statement failed with error: {e}")
         return e
     return result
+
+
+async def insert_task(task_name, task_description, task_type, stack, assigned_by, due_date, task_priority):
+    """
+    Inserts the task into the database.
+    :return:
+    """
+    try:
+        query = """
+        INSERT INTO Task (task_name, description, task_type, stack, assigned_by_id, due_date,task_priority )
+         VALUES (?, ?, ?, ?, ?, ?,?)
+         """
+        args = (task_name, task_description, task_type, stack, assigned_by, due_date, task_priority)
+        await execute("query", query, args)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error insert task: {e}")
+        return e

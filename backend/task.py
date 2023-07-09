@@ -3,7 +3,7 @@ from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_404_NOT_FOUND,
 from datetime import datetime
 
 from backend.user_op import get_current_token
-from backend.database.master import get_all_task, get_my_task
+from backend.database.master import get_all_task, get_my_task, insert_task
 from backend.register import get_user_id_from_token
 
 router = APIRouter()
@@ -121,8 +121,17 @@ async def put_task_api(request: Request, token: str = Depends(get_current_token)
     task_name = incoming_data.get("task_name")
     task_description = incoming_data.get("task_description")
     task_type = incoming_data.get("task_type")
-    skills = incoming_data.get("skills")
-    assigned_by = incoming_data.get("assigned_by")
+    stack = incoming_data.get("skills")
+    assigned_by = int(incoming_data.get("assigned_by"))
     due_date = incoming_data.get("due_date")
-    task_priority = incoming_data.get("task_priority")
-    print(task_name, task_description, task_type, skills, assigned_by, due_date, task_priority)
+    due_date = datetime.strptime(due_date, '%Y-%m-%d %H:%M:%S')
+    due_date = due_date.strftime('%Y-%m-%d %H:%M:%S')
+    task_priority = int(incoming_data.get("task_priority"))
+    print(task_name, task_description, task_type, stack, assigned_by, due_date, task_priority)
+    result = await insert_task(task_name, task_description, task_type, stack, assigned_by, due_date, task_priority)
+    if isinstance(result, Exception):
+        raise HTTPException(
+            status_code=HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error",
+        ) from result
+    return {"status": HTTP_200_OK, "message": "Task inserted successfully"}
