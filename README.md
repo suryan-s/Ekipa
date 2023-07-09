@@ -1,6 +1,9 @@
 <div align="center">
-    ![Frame_1_2](https://github.com/suryan-s/Ekipa/assets/76394506/b1a76cf6-a9b7-410d-9bd5-17febad9b559)
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/76394506/252134309-36f9c7a2-3e25-408c-bdc3-f96adf1776e3.svg" width="80%">
+
 </div>
+
+</br>
 
 Ekipa is a comprehensive team management and task allocation platform designed to streamline collaboration and enhance productivity within teams. With Ekipa, you can efficiently create and manage teams, assign tasks, and track their progress, all in one centralized platform.
 
@@ -12,7 +15,6 @@ The purpose of the "Ekipa" web app is to optimize task assignment and improve th
 
 The audience for the "Ekipa" web app are software development teams and project managers who are responsible for task allocation and team coordination.
 
-</br>
 <hr/>
 
 ## 💻 Installation and Usage
