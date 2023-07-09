@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -54,6 +53,7 @@ export default function Editor() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
@@ -61,7 +61,7 @@ export default function Editor() {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
+          <Button variant="outline" className="bg-blue-700">Edit Profile</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -80,7 +80,7 @@ export default function Editor() {
                   <FormItem>
                     <FormLabel>First Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Task Name" {...field} />
+                      <Input placeholder="first Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -93,7 +93,7 @@ export default function Editor() {
                   <FormItem>
                     <FormLabel>Last Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Task Name" {...field} />
+                      <Input placeholder="last Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -103,12 +103,12 @@ export default function Editor() {
               <div className="flex flex-row gap-8">
               <FormField
                 control={form.control}
-                name="email"
+                name="phone_number"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Task Name" {...field} />
+                      <Input placeholder="number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -116,23 +116,91 @@ export default function Editor() {
               />
               <FormField
                 control={form.control}
-                name="lastname"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>First Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Task Name" {...field} />
+                      <Input placeholder="email@email" type="email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               </div>
+              <div className="flex flex-row gap-8">
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address</FormLabel>
+                    <FormControl>
+                      <Input placeholder="address" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>City</FormLabel>
+                    <FormControl>
+                      <Input placeholder="city" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              </div>
+              <div className="flex flex-row gap-8">
+              <FormField
+                control={form.control}
+                name="state"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>State</FormLabel>
+                    <FormControl>
+                      <Input placeholder="state" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country</FormLabel>
+                    <FormControl>
+                      <Input placeholder="country" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              </div>
+              <div className="w-full">
+              <FormField
+                control={form.control}
+                name="skills"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Skills</FormLabel>
+                    <FormControl>
+                      <Input placeholder="skill1,skill2,skill3" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /></div>
+            <Button type="submit" className="w-full">Save changes</Button>
             </form>
           </Form>
-          <DialogFooter>
-            <Button type="submit">Save changes</Button>
-          </DialogFooter>
         </DialogContent>
       </Dialog>
     </>
