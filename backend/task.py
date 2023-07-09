@@ -9,6 +9,32 @@ from backend.register import get_user_id_from_token
 router = APIRouter()
 
 
+async def task_allocator_master(task_name, task_description, task_type, stack, assigned_by, due_date, task_priority):
+    """
+    This function is used to allocate task to the user.
+    Args:
+        task_name:
+        task_description:
+        task_type:
+        stack:
+        assigned_by:
+        due_date:
+        task_priority:
+    """
+    query1 = """
+    SELECT 
+    """
+    query2 = """
+    """
+    query3 = """
+    """
+    query4 = """
+    """
+    query5 = """
+    """
+    pass
+
+
 @router.get('/allTaskList')
 async def get_all_task_list(token: str = Depends(get_current_token)):
     """
@@ -124,6 +150,7 @@ async def put_task_api(request: Request, token: str = Depends(get_current_token)
     stack = incoming_data.get("skills")
     assigned_by = int(incoming_data.get("assigned_by"))
     due_date = incoming_data.get("due_date")
+    due_date = due_date.replace('T', ' ').replace('Z', '')
     due_date = datetime.strptime(due_date, '%Y-%m-%d %H:%M:%S')
     due_date = due_date.strftime('%Y-%m-%d %H:%M:%S')
     task_priority = int(incoming_data.get("task_priority"))
