@@ -27,7 +27,7 @@ export default function Tasks() {
   }
   useEffect(() => {
     const abortController = new AbortController();
-    getData(abortController, setToken).then(setData);
+    getData(abortController).then(setData);
     return () => {
       abortController.abort();
     };
