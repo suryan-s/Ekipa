@@ -14,12 +14,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# TODO -
-# 1. Sign in / Sign up page
-# 2. User profile page
-# 3. User settings page
-# 4. Team dashboard page
-
 
 @app.on_event("startup")
 async def startup():

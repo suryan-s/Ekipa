@@ -87,3 +87,23 @@ CREATE TABLE IF NOT EXISTS Task (
 );
 
 -- Task Rejection Table
+CREATE TABLE IF NOT EXISTS TaskRejection (
+    rejection_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    task_id INTEGER NOT NULL,
+    team_id INTEGER NOT NULL,
+    reason TEXT,
+    rejected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES Task(task_id),
+    FOREIGN KEY (team_id) REFERENCES Team(team_id)
+);
+
+-- Chat Table
+CREATE TABLE IF NOT EXISTS Chat (
+    chat_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    team_id INT NOT NULL,
+    sender_id VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (team_id) REFERENCES Team(team_id),
+    FOREIGN KEY (sender_id) REFERENCES User(user_id)
+);
