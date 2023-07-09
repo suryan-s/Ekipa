@@ -42,13 +42,18 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then(
-        (data: { status: number; message: string; access_token: string }) => {
+        (data: {
+          status: number;
+          message: string;
+          access_token: string;
+          detail?: string;
+        }) => {
           console.log(data);
           if (data.status === 200) {
             setToken(data.access_token);
             navigate("/");
           } else {
-            alert(data.message);
+            alert(data.detail);
             console.log(data);
           }
         }

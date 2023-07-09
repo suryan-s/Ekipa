@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Teams from "@/components/teams/Teams";
 import { useEffect, useState } from "react";
+import TeamChat from "@/components/teamchat/TeamChat";
 
 export default function Home() {
   return (
@@ -85,7 +86,9 @@ function TabSection() {
         <MyTasks />
       </TabsContent>
       <TabsContent value="notifications">Notifications</TabsContent>
-      <TabsContent value="teamchat">Teamchat</TabsContent>
+      <TabsContent value="teamchat">
+        <TeamChat />
+      </TabsContent>
     </Tabs>
   );
 }
