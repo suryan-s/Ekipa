@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import MemberCard from "./MemberCard";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function MyTeam() {
   const { setToken } = useContext(AuthContext);
+  const [fData, setFdata] = useState<any>([]);
   useEffect(() => {
     const abortController = new AbortController();
     fetch("http://localhost:8000/user/teamMembers", {
@@ -20,6 +21,7 @@ export default function MyTeam() {
       })
       .then((data) => {
         console.log(data);
+        setFdata(data.value);
       });
     return () => {
       abortController.abort();
@@ -28,18 +30,13 @@ export default function MyTeam() {
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      <MemberCard
-        name="Suryan"
-        tasksOnProgress={5}
-        pendingTasks={1}
-        backlogs={4}
-      />
-      <MemberCard
-        name="Akash"
-        tasksOnProgress={5}
-        pendingTasks={1}
-        backlogs={4}
-      />
+      {fData.map((item: any) => (
+        <MemberCard
+          name={item[2]}
+          tasksOnProgress={item[3]}
+          pendingTasks={item[1]}
+        />
+      ))}
     </div>
   );
 }

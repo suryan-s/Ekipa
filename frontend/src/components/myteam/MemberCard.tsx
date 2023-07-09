@@ -18,12 +18,10 @@ export default function MemberCard({
   name,
   tasksOnProgress,
   pendingTasks,
-  backlogs,
 }: {
   name: string;
   tasksOnProgress: number;
   pendingTasks: number;
-  backlogs: number;
 }) {
   return (
     <Card className="relative">
@@ -38,13 +36,8 @@ export default function MemberCard({
         <p className="text-2xl">{tasksOnProgress}</p>
       </CardContent>
       <CardFooter className="flex-col items-start">
-        <div className="flex gap-3">
-          <p>Pending tasks:</p>
+        <div className="flex gap-1 opacity-80">
           <p>{pendingTasks}</p>
-        </div>
-        <div className="flex gap-3">
-          <p>Backlogs:</p>
-          <p>{backlogs}</p>
         </div>
       </CardFooter>
       <DropdownMenu>
