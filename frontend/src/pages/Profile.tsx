@@ -1,9 +1,6 @@
+import Editor from "@/components/profile/Editor";
 import { Button } from "@/components/ui/button";
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-  } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Profile() {
   return (
@@ -25,14 +22,67 @@ export default function Profile() {
             ></path>
           </svg>
         </Button>
-        <div className=" text-white mr-6 text-bold text-2xl">
-          My Profile
+        <div className=" text-white mr-6 text-bold text-2xl">My Profile</div>
+      </div>
+      <div className="flex flex-row gap-5">
+        <Avatar className="h-36 w-36 rounded-sm">
+          <AvatarImage src="https://github.com/suryan-s.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+
+        <div className="flex flex-col mt-20 ">
+          <div className="text-2xl font-semibold">S Suryan</div>
+          <div>Ph.No : 7786952421</div>
         </div>
       </div>
-      <Avatar >
-      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
+      <div>
+        <div className="text-xl font-bold">Personal Information</div>
+        <div className="mt-4 w-full flex flex-row justify-between">
+          <div className="text-lg font-semibold ">
+            Address
+            <div className="text-sm font-medium w-96 h-10 border rounded-md border-solid p-2">
+              Somewhere in, aruvikara
+            </div>
+          </div>
+          <div className="text-lg font-semibold ">
+            City
+            <div className="text-sm font-medium w-80 h-10 border rounded-md border-solid p-2 ">
+              Thrivananthapuram
+            </div>
+          </div>
+          <div className="text-lg font-semibold ">
+            State
+            <div className="text-sm font-medium w-80 h-10 border rounded-md border-solid p-2">
+              Kerala
+            </div>
+          </div>
+          <div className="text-lg font-semibold">
+            Country
+            <div className="text-sm font-medium w-80 h-10 border rounded-md border-solid p-2">
+              India
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="mt-1 w-full flex flex-row gap-2">
+          <div className="text-lg font-semibold w-1/3">
+            Email
+            <div className="text-sm font-medium w-full h-10 border rounded-md border-solid p-2">
+              suryananannan@gmail.com
+            </div>
+          </div>
+          <div className="text-lg font-semibold w-2/3">
+            Skills
+            <div className="text-sm font-medium w-full h-10 border rounded-md border-solid p-2 ">
+              Skill1, skill2, Skill3
+            </div>
+          </div>
+         
+        </div>
+      </div>
+      <Editor></Editor>
     </div>
+     
   );
 }
