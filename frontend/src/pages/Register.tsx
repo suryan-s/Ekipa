@@ -77,16 +77,20 @@ const Register = () => {
   const handleRegister = (values: z.infer<typeof formSchema>) => {
     fetch("http://localhost:8000/register/signup", {
       method: "POST",
-      headers: {"Content-Type":"application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: { status: number; access_token: string }) => {
+        if (data.status === 409) {
+          alert("username already exists");
+          navigate("/");
+          return;
+        }
         console.log(data);
+        setToken(data.access_token);
+        navigate("/");
       });
-    setToken("1234");
-    console.log(JSON.stringify(values));
-    navigate("/");
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -138,6 +142,7 @@ const Register = () => {
                   <FormControl>
                     <Input
                       placeholder="password"
+                      type="password"
                       className="w-56 sm:w-96"
                       {...field}
                     />
@@ -394,7 +399,12 @@ const Register = () => {
           </Button>
         </form>
       </Form>
-      <div className="flex flex-row text-xs font-normal gap-2 text-gray-500"><div>Already have an account</div><a href="/login" className="font-medium text-orange-800">Log In</a></div>
+      <div className="flex flex-row text-xs font-normal gap-2 text-gray-500">
+        <div>Already have an account</div>
+        <a href="/login" className="font-medium text-orange-800">
+          Log In
+        </a>
+      </div>
     </div>
   );
 };

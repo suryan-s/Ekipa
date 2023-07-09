@@ -31,20 +31,27 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = (values: z.infer<typeof formSchema>) => {
-    function getFormData(object:any) {
+    function getFormData(object: any) {
       const formData = new FormData();
-      Object.keys(object).forEach(key => formData.append(key, object[key]));
+      Object.keys(object).forEach((key) => formData.append(key, object[key]));
       return formData;
-  }
+    }
     fetch("http://localhost:8000/register/signin", {
       method: "POST",
       body: getFormData(values),
-    }).then(res=>res.json()).then((data)=>{
-      console.log(data)
     })
+      .then((res) => res.json())
+      .then((data: { status: number; message: string; token: string }) => {
+        if (data.status === 200) {
+          setToken(data.token);
+          navigate("/");
+        } else {
+          alert(data.message);
+        }
+      });
     setToken("1234");
     navigate("/");
-    console.log(values)
+    console.log(values);
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -82,11 +89,13 @@ const Login = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter password" {...field} />
+                  <Input
+                    placeholder="enter password"
+                    type="password"
+                    {...field}
+                  />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
+                <FormDescription></FormDescription>
                 <FormMessage />
               </FormItem>
             )}
