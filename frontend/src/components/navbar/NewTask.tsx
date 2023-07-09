@@ -29,6 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 const formSchema = z.object({
   task_name: z.string({
     required_error: "Task name is required",
@@ -63,9 +65,27 @@ export default function NewTask() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+  const { token, setToken } = useContext(AuthContext);
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    fetch("http://localhost:8000/task/insertTask", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          if (setToken) setToken(null);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
     console.log(JSON.stringify(values));
   }
   return (
@@ -144,7 +164,18 @@ export default function NewTask() {
             <FormItem>
               <FormLabel>Assigned By</FormLabel>
               <FormControl>
-                <Input placeholder="Assigned By" {...field} />
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a type..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">Manager</SelectItem>
+                    <SelectItem value="2">Team Lead</SelectItem>
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>
