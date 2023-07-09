@@ -68,7 +68,6 @@ export default function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
-                <AvatarImage src="https://github.com/suryan-s.png" />
                 <AvatarFallback>SS</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>

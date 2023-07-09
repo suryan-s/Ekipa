@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import MemberCard from "./MemberCard";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function MyTeam() {
+  const { setToken } = useContext(AuthContext);
   useEffect(() => {
     const abortController = new AbortController();
     fetch("http://localhost:8000/user/teamMembers", {
@@ -10,7 +12,12 @@ export default function MyTeam() {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401) {
+          if (setToken) setToken(null);
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
       });

@@ -1,15 +1,24 @@
 import { DataTable } from "./dataTable/DataTable";
 import { columns } from "./data/columns";
 import { Task, taskSchema } from "./data/schema";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { z } from "zod";
-async function getData() {
+import { AuthContext } from "@/context/AuthContext";
+async function getData(setToken?: any) {
   const res = await fetch("http://localhost:8000/user/allTeamDetails", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        if (res.status === 401) {
+          if (setToken) setToken(null);
+        }
+        throw new Error("HTTP Error " + res.status);
+      }
+      return res.json();
+    })
     .then((data) => {
       console.log(data);
       return data;
@@ -18,8 +27,9 @@ async function getData() {
 }
 export default function Teams() {
   const [data, setData] = useState<Task[]>([]);
+  const { setToken } = useContext(AuthContext);
   useEffect(() => {
-    getData().then(setData);
+    getData(setToken).then(setData);
   }, []);
   return <DataTable columns={columns} data={data} />;
 }

@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: Props) => {
     localStorage.setItem("roles", roles || "");
   }, [roles]);
   const setRoles = () => {
-    fetch("http://localhost:8000/user /roles", {
+    fetch("http://localhost:8000/user/roles", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

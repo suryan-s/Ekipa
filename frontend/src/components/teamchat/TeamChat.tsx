@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext, useEffect, useState } from "react";
 
 export default function TeamChat() {
   useEffect(() => {
@@ -43,6 +44,7 @@ function SentMessage({ message }: { message: string }) {
 
 function ChatInput() {
   const [message, setMessage] = useState("");
+  const { setToken } = useContext(AuthContext);
   const handleSend = () => {
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
@@ -51,7 +53,20 @@ function ChatInput() {
         "Content-Type": "application/json",
         body: JSON.stringify({ message }),
       },
-    });
+    })
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 401) {
+            if (setToken) setToken(null);
+          }
+          throw new Error("HTTP Error " + res.status);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
   };
   return (
     <div className="flex gap-3">
