@@ -41,14 +41,18 @@ const Login = () => {
       body: getFormData(values),
     })
       .then((res) => res.json())
-      .then((data: { status: number; message: string; token: string }) => {
-        if (data.status === 200) {
-          setToken(data.token);
-          navigate("/");
-        } else {
-          alert(data.message);
+      .then(
+        (data: { status: number; message: string; access_token: string }) => {
+          console.log(data);
+          if (data.status === 200) {
+            setToken(data.access_token);
+            navigate("/");
+          } else {
+            alert(data.message);
+            console.log(data);
+          }
         }
-      });
+      );
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
