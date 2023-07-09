@@ -49,9 +49,6 @@ const Login = () => {
           alert(data.message);
         }
       });
-    setToken("1234");
-    navigate("/");
-    console.log(values);
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
