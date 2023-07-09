@@ -5,6 +5,7 @@ import Tasks from "@/components/tasks/Tasks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Teams from "@/components/teams/Teams";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
@@ -38,6 +39,19 @@ function DataCard({ title, content }: { title: string; content: string }) {
 }
 
 function DetailGrid() {
+  const [data, setData] = useState<any[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/user/teamDetails", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      });
+  }, []);
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
       <DataCard title="Name" content="Ekipa" />
