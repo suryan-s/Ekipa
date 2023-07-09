@@ -3,8 +3,9 @@ import { columns } from "@/components/tasks/data/columns";
 import { Task, taskSchema } from "./data/schema";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-async function getData() {
+async function getData(abortController: AbortController) {
   const res = await fetch("http://localhost:8000/task/allTaskList", {
+    signal: abortController.signal,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -16,7 +17,11 @@ async function getData() {
 export default function Tasks() {
   const [data, setData] = useState<Task[]>([]);
   useEffect(() => {
-    getData().then(setData);
+    const abortController = new AbortController();
+    getData(abortController).then(setData);
+    return () => {
+      abortController.abort();
+    };
   }, []);
   return <DataTable columns={columns} data={data} />;
 }
