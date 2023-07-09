@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { BellIcon, PlusIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
@@ -31,6 +32,10 @@ export default function Navbar() {
   const handleLogOut = () => {
     setToken(null);
   };
+  const navigate = useNavigate();
+  const handleProfile = ()=>{
+    navigate("/Profile")
+  }
   return (
     <nav className="flex items-center justify-between flex-wrap w-full p-6 max-w-screen-2xl mx-auto">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -74,7 +79,7 @@ export default function Navbar() {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=> handleProfile()}>Profile</DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleLogOut()}>
                 Log Out
               </DropdownMenuItem>
