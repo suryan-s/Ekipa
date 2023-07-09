@@ -16,7 +16,7 @@ async function getData(abortController: AbortController, setToken?: any) {
   }
   const tasks = await res.json();
   console.log(tasks);
-  return z.array(taskSchema).parse(tasks);
+  return z.array(taskSchema).parse(tasks.data);
 }
 export default function Tasks() {
   const [data, setData] = useState<Task[]>([]);

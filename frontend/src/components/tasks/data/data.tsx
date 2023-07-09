@@ -30,27 +30,27 @@ export const labels = [
 
 export const statuses = [
   {
-    value: "overdue",
+    value: "OVERDUE",
     label: "Overdue",
     icon: QuestionMarkCircledIcon,
   },
   {
-    value: "todo",
+    value: "TODO",
     label: "Todo",
     icon: CircleIcon,
   },
   {
-    value: "in progress",
+    value: "IN PROGRESS",
     label: "In Progress",
     icon: StopwatchIcon,
   },
   {
-    value: "completed",
+    value: "COMPLETED",
     label: "Completed",
     icon: CheckCircledIcon,
   },
   {
-    value: "canceled",
+    value: "CANCELLED",
     label: "Canceled",
     icon: CrossCircledIcon,
   },
