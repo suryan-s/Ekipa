@@ -2,7 +2,6 @@ import { DataTable } from "@/components/tasks/dataTable/DataTable";
 import { columns } from "@/components/tasks/data/columns";
 import { Task, taskSchema } from "./data/schema";
 import { useEffect, useState } from "react";
-import { tasks } from "@/components/tasks/data/tasks";
 import { z } from "zod";
 async function getData() {
   const res = await fetch("http://localhost:8000/task/allTaskList", {

@@ -70,7 +70,7 @@ const formSchema = z.object({
 });
 
 const Register = () => {
-  const { setToken } = useContext(AuthContext);
+  const { setToken, setRoles } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -89,6 +89,7 @@ const Register = () => {
         }
         console.log(data);
         setToken(data.access_token);
+        setRoles();
         navigate("/");
       });
   };
