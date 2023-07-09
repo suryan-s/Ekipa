@@ -3,9 +3,11 @@
 
 </div>
 
-</br>
+<div style="display: flex; justify-content: center;">
+  <h3>Ekipa is a comprehensive team management and task allocation platform designed to streamline collaboration and enhance productivity within teams. With Ekipa, you can efficiently create and manage teams, assign tasks, and track their progress, all in one centralized platform.</h3>
+    
+</div>
 
-Ekipa is a comprehensive team management and task allocation platform designed to streamline collaboration and enhance productivity within teams. With Ekipa, you can efficiently create and manage teams, assign tasks, and track their progress, all in one centralized platform.
 
 ## 🎯 Purpose
 
@@ -19,24 +21,27 @@ The audience for the "Ekipa" web app are software development teams and project 
 
 ## 💻 Installation and Usage
 
+
+
 - Clone the repository :\
     `git clone [https://github.com/suryan-s/Ekipa](https://github.com/suryan-s/Ekipa)`
 
 - Create a virtual environment:\
-    `python -m venv venv`
+    `python -m venv .venv`
 
 - Install packages from requirements.txt :\
     `pip install -r requirements.txt`
 
 - Build the static files for the frontend:
-    `cd frontend`
-    `npm install`
-    `npm run build`
-    `cd ..`
+    ```
+    cd frontend
+    npm install
+    npm run build
+    cd ..
+    ```
 
 - Run the application by :\
     `python main.py`
-</br>
 
 <hr/>
 
@@ -44,8 +49,9 @@ The audience for the "Ekipa" web app are software development teams and project 
 
 - Python 3.8 or higher
 - Libraries used:
-  - fastapi, uvicorn, aiosqlite
-</br>
+  1. Python: fastapi, uvicorn, sqlite3
+  2. Web: TailWind, TypeScript, ShadeCN-UI 
+
 
 <hr/>
 
