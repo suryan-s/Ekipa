@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
 from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_404_NOT_FOUND, HTTP_401_UNAUTHORIZED, HTTP_200_OK
+from datetime import datetime
 
 from backend.user_op import get_current_token
 from backend.database.master import get_all_task, get_my_task
@@ -92,10 +93,19 @@ async def get_my_task_list(token: str = Depends(get_current_token)):
 #         )
 #
 #
-@router.get('/insertTask')
+@router.post('/insertTask')
 async def put_task_api(request: Request, token: str = Depends(get_current_token)):
     """
     Insert new task into the database.
+    {
+        task_name: string;
+        task_description: string;
+        task_type: string;
+        skills: string;
+        assigned_by: string;
+        due_date: Date;
+        task_priority: number;
+    }
     Args:
         request:
         token:
@@ -108,3 +118,11 @@ async def put_task_api(request: Request, token: str = Depends(get_current_token)
             headers={"WWW-Authenticate": "Bearer"},
         )
     incoming_data = await request.json()
+    task_name = incoming_data.get("task_name")
+    task_description = incoming_data.get("task_description")
+    task_type = incoming_data.get("task_type")
+    skills = incoming_data.get("skills")
+    assigned_by = incoming_data.get("assigned_by")
+    due_date = incoming_data.get("due_date")
+    task_priority = incoming_data.get("task_priority")
+    print(task_name, task_description, task_type, skills, assigned_by, due_date, task_priority)
