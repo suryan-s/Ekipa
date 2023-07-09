@@ -1,0 +1,83 @@
+--Team Quries
+
+INSERT INTO Team (team_name, points, team_lead_id, team_skill_set) VALUES
+('Team A', 10, 'user1', 'Java, Python, SQL'),
+('Team B', 5, 'user2', 'JavaScript, HTML, CSS'),
+('Team C', 15, 'user3', 'C++, C#, .NET'),
+('Team D', 8, 'user4', 'Ruby, Rails, PostgreSQL'),
+('Team E', 12, 'user5', 'PHP, MySQL, Laravel'),
+('Team F', 6, 'user6', 'C, Assembly, Embedded Systems'),
+('Team G', 20, 'user7', 'Python, Machine Learning, Data Analysis'),
+('Team H', 4, 'user8', 'JavaScript, React, Redux'),
+('Team I', 18, 'user9', 'Java, Spring Boot, Hibernate'),
+('Team J', 7, 'user10', 'C#, .NET Core, Azure'),
+('Team K', 14, 'user11', 'Python, Django, PostgreSQL'),
+('Team L', 9, 'user12', 'JavaScript, Node.js, Express'),
+('Team M', 13, 'user13', 'Java, Angular, MongoDB'),
+('Team N', 3, 'user14', 'C++, Qt, OpenGL'),
+('Team O', 11, 'user15', 'Python, Flask, SQLite'),
+('Team P', 17, 'user16', 'Ruby, Sinatra, PostgreSQL'),
+('Team Q', 2, 'user17', 'JavaScript, Vue.js, Firebase'),
+('Team R', 16, 'user18', 'Java, Kotlin, Android'),
+('Team S', 5, 'user19', 'Python, Selenium, Test Automation'),
+('Team T', 15, 'user20', 'C#, Unity, Game Development'),
+('Team U', 8, 'user21', 'JavaScript, TypeScript, Angular'),
+('Team V', 12, 'user22', 'Java, Spring, Oracle'),
+('Team W', 6, 'user23', 'Python, Data Science, Pandas'),
+('Team X', 19, 'user24', 'C++, Robotics, ROS'),
+('Team Y', 4, 'user25', 'JavaScript, React Native, Mobile Development');
+
+--User Quries
+
+INSERT INTO User (user_id, username, password_hash, email, first_name, last_name, phone_number, address, city, state, country, zip_code, team_name, skills, role_id) VALUES
+('user1', 'john123', 'hash123', 'john@example.com', 'John', 'Doe', '1234567890', '123 Main St', 'New York', 'NY', 'USA', '12345', 'Team A', 'Java, Python', 1),
+('user2', 'jane456', 'hash456', 'jane@example.com', 'Jane', 'Smith', '0987654321', '456 Elm St', 'Los Angeles', 'CA', 'USA', '54321', 'Team B', 'JavaScript, HTML, CSS', 2),
+('user3', 'mike789', 'hash789', 'mike@example.com', 'Mike', 'Johnson', '9876543210', '789 Oak St', 'Chicago', 'IL', 'USA', '67890', 'Team C', 'C++, C#, .NET', 3),
+('user4', 'emma321', 'hash321', 'emma@example.com', 'Emma', 'Brown', '0123456789', '987 Pine St', 'San Francisco', 'CA', 'USA', '98765', 'Team D', 'Ruby, Rails, PostgreSQL', 1),
+('user5', 'alex654', 'hash654', 'alex@example.com', 'Alex', 'Wilson', '9876543210', '654 Cedar St', 'Miami', 'FL', 'USA', '56789', 'Team E', 'PHP, MySQL, Laravel', 2),
+('user6', 'lisa987', 'hash987', 'lisa@example.com', 'Lisa', 'Davis', '0123456789', '321 Oak St', 'Seattle', 'WA', 'USA', '87654', 'Team F', 'C, Assembly, Embedded Systems', 3),
+('user7', 'peter123', 'hash123', 'peter@example.com', 'Peter', 'Lee', '1234567890', '123 Elm St', 'New York', 'NY', 'USA', '12345', 'Team G', 'Python, Machine Learning, Data Analysis', 1),
+('user8', 'sarah456', 'hash456', 'sarah@example.com', 'Sarah', 'Taylor', '0987654321', '456 Pine St', 'Los Angeles', 'CA', 'USA', '54321', 'Team H', 'JavaScript, React, Redux', 2),
+('user9', 'mark789', 'hash789', 'mark@example.com', 'Mark', 'Anderson', '9876543210', '789 Cedar St', 'Chicago', 'IL', 'USA', '67890', 'Team I', 'Java, Spring Boot, Hibernate', 3),
+('user10', 'linda321', 'hash321', 'linda@example.com', 'Linda', 'Moore', '0123456789', '987 Oak St', 'San Francisco', 'CA', 'USA', '98765', 'Team J', 'C#, .NET Core, Azure', 1),
+('user11', 'david654', 'hash654', 'david@example.com', 'David', 'Wilson', '9876543210', '654 Pine St', 'Miami', 'FL', 'USA', '56789', 'Team K', 'Python, Django, PostgreSQL', 2),
+('user12', 'mary987', 'hash987', 'mary@example.com', 'Mary', 'Davis', '0123456789', '321 Cedar St', 'Seattle', 'WA', 'USA', '87654', 'Team L', 'JavaScript, Node.js, Express', 3),
+('user13', 'steve123', 'hash123', 'steve@example.com', 'Steve', 'Smith', '1234567890', '123 Oak St', 'New York', 'NY', 'USA', '12345', 'Team M', 'Java, Angular, MongoDB', 1),
+('user14', 'julia456', 'hash456', 'julia@example.com', 'Julia', 'Taylor', '0987654321', '456 Pine St', 'Los Angeles', 'CA', 'USA', '54321', 'Team N', 'C++, Qt, OpenGL', 2),
+('user15', 'michael789', 'hash789', 'michael@example.com', 'Michael', 'Johnson', '9876543210', '789 Cedar St', 'Chicago', 'IL', 'USA', '67890', 'Team O', 'Python, Flask, SQLite', 3),
+('user16', 'amanda321', 'hash321', 'amanda@example.com', 'Amanda', 'Brown', '0123456789', '987 Oak St', 'San Francisco', 'CA', 'USA', '98765', 'Team P', 'Ruby, Sinatra, PostgreSQL', 1),
+('user17', 'ryan654', 'hash654', 'ryan@example.com', 'Ryan', 'Wilson', '9876543210', '654 Pine St', 'Miami', 'FL', 'USA', '56789', 'Team Q', 'JavaScript, Vue.js, Firebase', 2),
+('user18', 'sophia987', 'hash987', 'sophia@example.com', 'Sophia', 'Davis', '0123456789', '321 Cedar St', 'Seattle', 'WA', 'USA', '87654', 'Team R', 'Java, Kotlin, Android', 3),
+('user19', 'chris123', 'hash123', 'chris@example.com', 'Chris', 'Lee', '1234567890', '123 Elm St', 'New York', 'NY', 'USA', '12345', 'Team S', 'Python, Selenium, Test Automation', 1),
+('user20', 'olivia456', 'hash456', 'olivia@example.com', 'Olivia', 'Taylor', '0987654321', '456 Pine St', 'Los Angeles', 'CA', 'USA', '54321', 'Team T', 'C#, Unity, Game Development', 2),
+('user21', 'ethan789', 'hash789', 'ethan@example.com', 'Ethan', 'Anderson', '9876543210', '789 Cedar St', 'Chicago', 'IL', 'USA', '67890', 'Team U', 'JavaScript, TypeScript, Angular', 3),
+('user22', 'ava321', 'hash321', 'ava@example.com', 'Ava', 'Wilson', '0123456789', '987 Oak St', 'San Francisco', 'CA', 'USA', '98765', 'Team V', 'Java, Spring, Oracle', 1),
+('user23', 'noah654', 'hash654', 'noah@example.com', 'Noah', 'Davis', '9876543210', '654 Pine St', 'Miami', 'FL', 'USA', '56789', 'Team W', 'Python, Data Science, Pandas', 2),
+('user24', 'mia987', 'hash987', 'mia@example.com', 'Mia', 'Smith', '0123456789', '321 Cedar St', 'Seattle', 'WA', 'USA', '87654', 'Team X', 'C++, Robotics, ROS', 3),
+('user25', 'jacob123', 'hash123', 'jacob@example.com', 'Jacob', 'Brown', '1234567890', '123 Elm St', 'New York', 'NY', 'USA', '12345', 'Team Y', 'JavaScript, React Native, Mobile Development', 1);
+
+--Task Queries
+
+INSERT INTO Task (task_name, description, task_type, assignee_id, assigned_by_id, team_id, due_date, status, completed_date, task_priority, points, stack)
+VALUES
+('Refactor Database Schema', 'Restructure the database schema for improved performance and scalability', 'feature', 'user1', 2, 1, '2024-07-15', 'TODO', NULL, 3, 5, 'SQL, Database Design'),
+('Implement User Authentication', 'Develop user authentication functionality using OAuth 2.0', 'feature', 'user2', 1, 2, '2024-07-16', 'IN PROGRESS', NULL, 4, 10, 'Java, Spring Security, OAuth'),
+('Write API Documentation', 'Create comprehensive documentation for the RESTful API endpoints', 'documentation', 'user3', 3, 3, '2024-07-17', 'COMPLETED', '2024-07-17', 2, 8, 'Swagger, Markdown'),
+('Fix Performance Bottleneck', 'Optimize code to resolve a performance bottleneck in a critical system module', 'bug', 'user4', 2, 4, '2024-07-18', 'OVERDUE', '2024-07-19', 3, 5, 'Java, Performance Profiling'),
+('Implement Data Encryption', 'Implement encryption algorithms to protect sensitive user data', 'feature', 'user5', 1, 5, '2024-07-19', 'CANCELLED', NULL, 4, 10, 'Python, cryptography'),
+('Write Technical Documentation', 'Create technical documentation for the project architecture and components', 'documentation', 'user6', 3, 6, '2024-07-20', 'TODO', NULL, 2, 8, 'Markdown, Git'),
+('Fix Bug Causing Data Inconsistency', 'Resolve a bug causing inconsistent data storage and retrieval', 'bug', 'user7', 2, 7, '2024-07-21', 'IN PROGRESS', NULL, 3, 5, 'SQL, Debugging'),
+('Implement File Upload Feature', 'Develop functionality to allow users to upload files and store them securely', 'feature', 'user8', 1, 8, '2024-07-22', 'COMPLETED', '2024-07-22', 4, 10, 'Node.js, Multer, AWS S3'),
+('Write User Guide', 'Create a comprehensive user guide to assist users in navigating and using the software', 'documentation', 'user9', 3, 9, '2024-07-23', 'TODO', NULL, 2, 8, 'Markdown, Adobe InDesign'),
+('Fix Authentication Bug', 'Investigate and fix a bug causing authentication failures for certain users', 'bug', 'user10', 2, 10, '2024-07-24', 'OVERDUE', '2024-07-25', 3, 5, 'Java, Spring Security'),
+('Implement Payment Integration', 'Integrate a payment gateway to enable online transactions', 'feature', 'user11', 1, 11, '2024-07-25', 'CANCELLED', NULL, 4, 10, 'Python, Stripe API'),
+('Perform Code Review', 'Conduct a thorough code review to ensure adherence to coding standards and best practices', 'documentation', 'user12', 3, 12, '2024-07-26', 'TODO', NULL, 2, 8, 'Git, Code Review Tools'),
+('Fix Cross-Site Scripting Vulnerability', 'Address security vulnerability allowing XSS attacks in the application', 'bug', 'user13', 2, 13, '2024-07-27', 'IN PROGRESS', NULL, 3, 5, 'Web Security, Vulnerability Patching'),
+('Implement Data Migration', 'Migrate existing data to a new database system without data loss or corruption', 'feature', 'user14', 1, 14, '2024-07-28', 'COMPLETED', '2024-07-28', 4, 10, 'SQL, ETL Tools'),
+('Write User Acceptance Tests', 'Create user acceptance tests to verify system functionality from a user perspective', 'documentation', 'user15', 3, 15, '2024-07-29', 'TODO', NULL, 2, 8, 'Cucumber, Selenium'),
+('Fix UI Layout Bug', 'Resolve a bug causing misalignment and layout issues in the user interface', 'bug', 'user16', 2, 16, '2024-07-30', 'OVERDUE', '2024-07-31', 3, 5, 'HTML, CSS'),
+('Implement Email Notifications', 'Develop functionality to send email notifications for user actions and system events', 'feature', 'user17', 1, 17, '2024-07-31', 'CANCELLED', NULL, 4, 10, 'Python, SMTP'),
+('Perform Load Testing', 'Simulate high user traffic to evaluate system performance and identify bottlenecks', 'documentation', 'user18', 3, 18, '2024-08-01', 'TODO', NULL, 2, 8, 'Apache JMeter, Gatling'),
+('Fix Cross-Site Request Forgery (CSRF) Vulnerability', 'Address security vulnerability allowing CSRF attacks in the application', 'bug', 'user19', 2, 19, '2024-08-02', 'IN PROGRESS', NULL, 3, 5, 'Web Security, Vulnerability Patching'),
+('Implement Data Import Functionality', 'Develop functionality to import data from external sources into the system', 'feature', 'user20', 1, 20, '2024-08-03', 'COMPLETED', '2024-08-03', 4, 10, 'Python, Data Parsing'),
+('Write User Documentation', 'Create comprehensive documentation to guide users on system setup and usage', 'documentation', 'user21', 3, 21, '2024-08-04', 'TODO', NULL, 2, 8, 'Markdown, Microsoft Word');
