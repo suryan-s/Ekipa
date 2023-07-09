@@ -58,18 +58,28 @@ export const statuses = [
 
 export const priorities = [
   {
-    label: "Low",
-    value: "low",
+    label: "1",
+    value: "1",
     icon: ArrowDownIcon,
   },
   {
-    label: "Medium",
-    value: "medium",
+    label: "2",
+    value: "2",
     icon: ArrowRightIcon,
   },
   {
-    label: "High",
-    value: "high",
+    label: "3",
+    value: "3",
+    icon: ArrowRightIcon,
+  },
+  {
+    label: "4",
+    value: "4",
+    icon: ArrowUpIcon,
+  },
+  {
+    label: "5",
+    value: "5",
     icon: ArrowUpIcon,
   },
 ];
