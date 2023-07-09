@@ -1,6 +1,10 @@
 import os.path
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import HTTPException
+from fastapi.staticfiles import StaticFiles
+from starlette.responses import RedirectResponse
+from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR
 
 from backend import app
 from backend.database.master import create_tables
@@ -12,6 +16,10 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+app.mount(
+    "/", StaticFiles(directory="./frontend/dist", html=True), name="static"
 )
 
 
@@ -37,12 +45,17 @@ async def startup():
 
 
 @app.get("/")
-async def root():
+async def read_index():
     """
-    Returns a simple message.
-    Returns:None
+    Redirects to the static folder.
+    Returns:
     """
-    return {"message": "Hello World"}
+    try:
+        return RedirectResponse(url="/")
+    except Exception as error:
+        raise HTTPException(
+            status_code=HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal Server Error"
+        ) from error
 
 
 # Path: main.py

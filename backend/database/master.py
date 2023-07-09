@@ -182,8 +182,9 @@ async def get_all_team_members(username: str):
         print(team_name[0][0])
         query2 = """SELECT user_id, username, first_name, last_name FROM User WHERE team_name = ? AND username != ?"""
         result = await execute("query", query2, (team_name, username))
+        print("done")
     except sqlite3.Error as e:
-        print(f"The SQL statement failed with error: {e}")
+        print(f"The SQL statement failed with error in get_all_team_members: {e}")
         return e
     return result
 
@@ -274,7 +275,6 @@ async def get_team_details(username: str):
     try:
         query1 = """SELECT team_name FROM User WHERE user_id = ?"""
         team_name = await execute("query", query1, (username,))
-        print(team_name[0][0])
         query2 = """
         SELECT
             Team.team_name AS "Team Name",
@@ -290,9 +290,9 @@ async def get_team_details(username: str):
         WHERE
             Team.team_name = ?
         """
-        result = await execute("query", query2, (team_name,))
+        result = await execute("query", query2, (team_name[0][0],))
     except sqlite3.Error as e:
-        print(f"The SQL statement failed with error: {e}")
+        print(f"The SQL statement failed with error in get team details: {e}")
         return e
     return result
 

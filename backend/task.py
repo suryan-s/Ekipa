@@ -92,19 +92,19 @@ async def get_my_task_list(token: str = Depends(get_current_token)):
 #         )
 #
 #
-# @router.get('/putTask')
-# async def put_task_api(request: Request, token: str = Depends(get_current_token)):
-#     """
-#     Insert new task into the database.
-#     Args:
-#         request:
-#         token:
-#     """
-#     user_id = await get_user_id_from_token(token)
-#     if user_id is None:
-#         raise HTTPException(
-#             status_code=HTTP_401_UNAUTHORIZED,
-#             detail="Invalid or missing authorization token",
-#             headers={"WWW-Authenticate": "Bearer"},
-#         )
-#     incoming_data = await request.json()
+@router.get('/insertTask')
+async def put_task_api(request: Request, token: str = Depends(get_current_token)):
+    """
+    Insert new task into the database.
+    Args:
+        request:
+        token:
+    """
+    user_id = await get_user_id_from_token(token)
+    if user_id is None:
+        raise HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing authorization token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    incoming_data = await request.json()
