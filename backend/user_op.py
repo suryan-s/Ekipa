@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer
 from starlette.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_401_UNAUTHORIZED, HTTP_404_NOT_FOUND
 
 from backend.database.master import get_roles, get_all_team_members, get_all_members, get_user_details, \
-    get_team_details, get_all_teams_details
+    get_team_details, get_all_teams_details, get_user_role
 from backend.register import get_user_id_from_token
 
 router = APIRouter()
@@ -69,6 +69,30 @@ async def get_roles_api():
     #         headers={"WWW-Authenticate": "Bearer"},
     #     )
     result = await get_roles()
+    if isinstance(result, Exception):
+        raise HTTPException(
+            status_code=HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error",
+        ) from result
+    return {"value": result}
+
+
+@router.get("/userRoles")
+async def get_user_roles_api(token: str = Depends(get_current_token)):
+    """
+    Returns the roles from database.
+    Args:
+        token:
+    """
+    user_id = await get_user_id_from_token(token)
+    if user_id is None:
+        raise HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing authorization token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    result = await get_user_role(user_id)
+    result = result[0][0]
     if isinstance(result, Exception):
         raise HTTPException(
             status_code=HTTP_500_INTERNAL_SERVER_ERROR,

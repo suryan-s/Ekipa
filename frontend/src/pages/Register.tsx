@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import * as z from "zod";
 import {
@@ -71,6 +71,15 @@ const formSchema = z.object({
 
 const Register = () => {
   const { setToken, setRoles } = useContext(AuthContext);
+  const [teamNames, setTeamNames] = useState<string[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/team/allTeamDetails")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTeamNames(data);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -90,6 +99,7 @@ const Register = () => {
         console.log(data);
         setToken(data.access_token);
         setRoles();
+        console.log(localStorage.getItem("token"));
         navigate("/");
       });
   };
@@ -402,9 +412,9 @@ const Register = () => {
       </Form>
       <div className="flex flex-row text-xs font-normal gap-2 text-gray-500">
         <div>Already have an account</div>
-        <a href="/login" className="font-medium text-orange-800">
+        <Link to="/login" className="font-medium text-orange-800">
           Log In
-        </a>
+        </Link>
       </div>
     </div>
   );

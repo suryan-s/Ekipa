@@ -18,13 +18,24 @@ export default function TeamChat() {
       abortController.abort();
     };
   }, []);
+  useEffect(() => {
+    //scroll to bottom
+    const chat = document.querySelector("#chat");
+    if (chat) {
+      chat.scrollTop = chat.scrollHeight;
+    }
+  });
   return (
-    <div className="bg-slate-800 p-6 rounded-xl flex flex-col gap-3">
-      <RecievedMessage message="hi" />
-      <SentMessage message="hey" />
-
+    <>
+      <div
+        id="chat"
+        className="bg-slate-800 p-6 rounded-xl flex flex-col gap-3 h-[30rem] max-h-[30rem] overflow-y-scroll relative pb-14"
+      >
+        <RecievedMessage message="hi" />
+        <SentMessage message="hey" />
+      </div>
       <ChatInput />
-    </div>
+    </>
   );
 }
 function RecievedMessage({ message }: { message: string }) {
@@ -46,6 +57,7 @@ function ChatInput() {
   const [message, setMessage] = useState("");
   const { setToken } = useContext(AuthContext);
   const handleSend = () => {
+    if (message.trim() === "") return;
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
       headers: {
@@ -69,7 +81,7 @@ function ChatInput() {
       });
   };
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3  w-full mt-6">
       <input
         type="text"
         className="bg-slate-700 rounded-xl p-3 w-full"

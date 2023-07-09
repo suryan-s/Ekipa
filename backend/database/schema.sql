@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS Task (
     task_type VARCHAR(20) NOT NULL, -- Task type can be: 'bug', 'feature', 'documentation', 'research'
     assignee_id VARCHAR(50),
     assigned_by_id INT NOT NULL,
-    team_id INT NOT NULL,
+    team_id INT ,
     due_date DATE NOT NULL,
     status VARCHAR(50) DEFAULT 'TODO', -- Status can be: 'todo', 'in progress', 'completed','overdue','cancelled'
     completed_date DATE,

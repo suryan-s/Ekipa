@@ -22,13 +22,6 @@ import {
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { SelectSingleEventHandler } from "react-day-picker";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 const formSchema = z.object({
   task_name: z.string({
     required_error: "Task name is required",
@@ -38,9 +31,6 @@ const formSchema = z.object({
   }),
   task_type: z.string({
     required_error: "Task type is required",
-  }),
-  skills: z.string({
-    required_error: "Skills is required",
   }),
   assigned_by: z.string({
     required_error: "Assigned by is required",
@@ -59,7 +49,7 @@ const formSchema = z.object({
  * lets you input a new task
  * with task name description task type
  */
-export default function NewTask() {
+export default function NewTeam() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -104,39 +94,12 @@ export default function NewTask() {
             <FormItem>
               <FormLabel>Task Type</FormLabel>
               <FormControl>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a type..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="bug">Bug</SelectItem>
-                    <SelectItem value="feature">Feature</SelectItem>
-                    <SelectItem value="documentation">Documentation</SelectItem>
-                    <SelectItem value="research">Research</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Input placeholder="Task Type" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="skills"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Skills</FormLabel>
-              <FormControl>
-                <Input placeholder="Skills" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="assigned_by"

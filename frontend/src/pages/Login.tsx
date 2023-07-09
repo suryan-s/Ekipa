@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import * as z from "zod";
 import {
@@ -116,9 +116,9 @@ const Login = () => {
       </Form>
       <div className="flex flex-row text-xs font-normal gap-2 text-gray-500">
         <div>New to Ekipa</div>
-        <a href="/register" className="font-medium text-orange-800">
+        <Link to="/register" className="font-medium text-orange-800">
           Create a new account?
-        </a>
+        </Link>
       </div>
     </div>
   );

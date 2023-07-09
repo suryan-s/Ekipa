@@ -179,11 +179,10 @@ async def get_all_team_members(username: str):
     try:
         query1 = """SELECT team_name FROM User WHERE user_id = ?"""
         team_name = await execute("query", query1, (username,))
-        print(team_name[0][0])
         query2 = """SELECT user_id, username, first_name, last_name FROM User WHERE team_name = ? AND username != ?"""
-        result = await execute("query", query2, (team_name, username))
+        result = await execute("query", query2, (team_name[0][0], username))
     except sqlite3.Error as e:
-        print(f"The SQL statement failed with error: {e}")
+        print(f"The SQL statement failed with error in get_all_team_members: {e}")
         return e
     return result
 
@@ -197,6 +196,22 @@ async def get_roles():
     try:
         query = """SELECT * FROM Roles"""
         result = await execute("query", query)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
+
+
+async def get_user_role(userid: str):
+    """
+    Gets the role of a user from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT role_id FROM User WHERE user_id = ?"""
+        args = (userid,)
+        result = await execute("query", query, args)
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")
         return e
@@ -258,7 +273,6 @@ async def get_team_details(username: str):
     try:
         query1 = """SELECT team_name FROM User WHERE user_id = ?"""
         team_name = await execute("query", query1, (username,))
-        print(team_name[0][0])
         query2 = """
         SELECT
             Team.team_name AS "Team Name",
@@ -274,9 +288,9 @@ async def get_team_details(username: str):
         WHERE
             Team.team_name = ?
         """
-        result = await execute("query", query2, (team_name,))
+        result = await execute("query", query2, (team_name[0][0],))
     except sqlite3.Error as e:
-        print(f"The SQL statement failed with error: {e}")
+        print(f"The SQL statement failed with error in get team details: {e}")
         return e
     return result
 
@@ -317,7 +331,12 @@ async def get_team_id(sender_id):
     """
     result = None
     try:
-        query = """SELECT team_id FROM User WHERE user_id = ?"""
+        query = """
+        SELECT Team.team_id 
+        FROM User 
+        JOIN Team ON User.team_name = Team.team_name 
+        WHERE User.user_id = ?;
+        """
         args = (sender_id,)
         result = await execute("query", query, args)
     except sqlite3.Error as e:
@@ -332,7 +351,8 @@ async def put_message(sender_id, incoming_message):
     :return:
     """
     try:
-        team_id = await get_team_id(sender_id)[0]
+        team_id = await get_team_id(sender_id)
+        print(team_id)
         query = """INSERT INTO Chat (team_id, sender_id, message) VALUES (?, ?)"""
         args = (team_id, sender_id, incoming_message)
         await execute("query", query, args)
@@ -354,3 +374,20 @@ async def get_message():
         print(f"The SQL statement failed with error: {e}")
         return e
     return result
+
+
+async def insert_task(task_name, task_description, task_type, stack, assigned_by, due_date, task_priority):
+    """
+    Inserts the task into the database.
+    :return:
+    """
+    try:
+        query = """
+        INSERT INTO Task (task_name, description, task_type, stack, assigned_by_id, due_date,task_priority )
+         VALUES (?, ?, ?, ?, ?, ?,?)
+         """
+        args = (task_name, task_description, task_type, stack, assigned_by, due_date, task_priority)
+        await execute("query", query, args)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error insert task: {e}")
+        return e
