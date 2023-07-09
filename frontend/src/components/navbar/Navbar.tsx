@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
-import { BellIcon, PlusIcon } from "@radix-ui/react-icons";
+import { BackpackIcon, BellIcon, PlusIcon } from "@radix-ui/react-icons";
 import {
   Popover,
   PopoverContent,
@@ -25,6 +25,7 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import NewTask from "./NewTask";
+import NewTeam from "./NewTeam";
 export default function Navbar() {
   const { setToken } = useContext(AuthContext);
 
@@ -37,6 +38,23 @@ export default function Navbar() {
         <span className="font-semibold text-xl tracking-tight">Ekipa</span>
       </div>
       <div className="flex items-center gap-4">
+        <Dialog>
+          <DialogTrigger
+            className={buttonVariants({
+              variant: "secondary",
+              className: "gap-1",
+            })}
+          >
+            <BackpackIcon />
+            New Team
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="mb-6">New Team</DialogTitle>
+              <NewTeam />
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
         <Dialog>
           <DialogTrigger
             className={buttonVariants({

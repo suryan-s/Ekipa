@@ -4,6 +4,28 @@ import { Task, taskSchema } from "./data/schema";
 import { useContext, useEffect, useState } from "react";
 import { z } from "zod";
 import { AuthContext } from "@/context/AuthContext";
+
+function toReqFormat(data: any) {
+  const newData: any = [];
+  data.forEach((element: any) => {
+    const temp: any = {
+      team: "",
+      leader: "",
+      totalMembers: 0,
+      pendingTasks: 0,
+      teamPoints: 0,
+    };
+    temp.team = element[0];
+
+    temp.totalMembers = element[1];
+    temp.pendingTasks = element[2];
+    temp.teamPoints = element[3];
+
+    newData.push(temp);
+  });
+  return newData;
+}
+
 async function getData(setToken?: any) {
   const res = await fetch("http://localhost:8000/user/allTeamDetails", {
     headers: {
@@ -20,8 +42,8 @@ async function getData(setToken?: any) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
-      return data;
+      const newData = toReqFormat(data.value);
+      return newData;
     });
   return z.array(taskSchema).parse(res);
 }
