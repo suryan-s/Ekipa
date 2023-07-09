@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import * as z from "zod";
@@ -71,6 +71,15 @@ const formSchema = z.object({
 
 const Register = () => {
   const { setToken, setRoles } = useContext(AuthContext);
+  const [teamNames, setTeamNames] = useState<string[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/team/allTeamDetails")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTeamNames(data);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
