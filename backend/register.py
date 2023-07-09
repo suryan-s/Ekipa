@@ -178,7 +178,6 @@ async def register(request: Request, user: User):
 
     try:
         incoming = await request.json()
-        print(incoming)
         user_id = secrets.token_hex(8)
         username = incoming["username"]
         hashed_password = str(get_password_hash(incoming["password"]))

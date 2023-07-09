@@ -203,6 +203,22 @@ async def get_roles():
     return result
 
 
+async def get_user_role(userid: str):
+    """
+    Gets the role of a user from the database.
+    :return:
+    """
+    result = None
+    try:
+        query = """SELECT role_id FROM User WHERE user_id = ?"""
+        args = (userid,)
+        result = await execute("query", query, args)
+    except sqlite3.Error as e:
+        print(f"The SQL statement failed with error: {e}")
+        return e
+    return result
+
+
 async def get_all_teams():
     """
     Gets all the teams from the database.
@@ -317,7 +333,12 @@ async def get_team_id(sender_id):
     """
     result = None
     try:
-        query = """SELECT team_id FROM User WHERE user_id = ?"""
+        query = """
+        SELECT Team.team_id 
+        FROM User 
+        JOIN Team ON User.team_name = Team.team_name 
+        WHERE User.user_id = ?;
+        """
         args = (sender_id,)
         result = await execute("query", query, args)
     except sqlite3.Error as e:
@@ -332,7 +353,8 @@ async def put_message(sender_id, incoming_message):
     :return:
     """
     try:
-        team_id = await get_team_id(sender_id)[0]
+        team_id = await get_team_id(sender_id)
+        print(team_id)
         query = """INSERT INTO Chat (team_id, sender_id, message) VALUES (?, ?)"""
         args = (team_id, sender_id, incoming_message)
         await execute("query", query, args)

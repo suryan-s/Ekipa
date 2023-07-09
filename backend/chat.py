@@ -27,6 +27,7 @@ async def post_chat(request: Request, token: str = Depends(get_current_token)):
     incoming_message = incoming["message"]
     result = await put_message(user_id, incoming_message)
     if isinstance(result, Exception):
+        print(result)
         raise HTTPException(
             status_code=HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
