@@ -22,7 +22,7 @@ async def task_allocator_master(task_name, task_description, task_type, stack, a
         task_priority:
     """
     query1 = """
-    SELECT 
+    SELECT team_name, points FROM team WHERE team_id = (SELECT team_id FROM user WHERE user_id = ?)
     """
     query2 = """
     """
@@ -150,7 +150,7 @@ async def put_task_api(request: Request, token: str = Depends(get_current_token)
     stack = incoming_data.get("skills")
     assigned_by = int(incoming_data.get("assigned_by"))
     due_date = incoming_data.get("due_date")
-    due_date = due_date.replace('T', ' ').replace('Z', '')
+    due_date = due_date.replace('T', ' ').replace('.000Z', '')
     due_date = datetime.strptime(due_date, '%Y-%m-%d %H:%M:%S')
     due_date = due_date.strftime('%Y-%m-%d %H:%M:%S')
     task_priority = int(incoming_data.get("task_priority"))
