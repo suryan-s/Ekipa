@@ -57,6 +57,7 @@ function ChatInput() {
   const [message, setMessage] = useState("");
   const { setToken } = useContext(AuthContext);
   const handleSend = () => {
+    if (message.trim() === "") return;
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
       headers: {

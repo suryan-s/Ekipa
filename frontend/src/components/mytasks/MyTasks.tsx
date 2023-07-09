@@ -16,6 +16,9 @@ async function getData(abortController: AbortController, setToken?: any) {
   }
   const tasks = await res.json();
   console.log(tasks);
+  tasks.data.forEach((task: any) => {
+    task.priority = task.priority.toString();
+  });
   return z.array(taskSchema).parse(tasks);
 }
 export default function MyTasks() {

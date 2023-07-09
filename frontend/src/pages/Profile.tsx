@@ -2,6 +2,8 @@ import Editor from "@/components/profile/Editor";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
 // import { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "@/context/AuthContext";
 
@@ -10,26 +12,26 @@ export default function Profile() {
   function onButtonClick() {
     navigate("/");
   }
-  // const [val, setVal] = useState<any[]>([]);
-  // const { token, setToken } = useContext(AuthContext);
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/user/", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status === 401) {
-  //         setToken(null);
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setVal(data);
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const [val, setVal] = useState<any[]>([]);
+  const { token, setToken } = useContext(AuthContext);
+  useEffect(() => {
+    fetch("http://localhost:8000/user/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          setToken(null);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setVal(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="p-6 flex flex-col gap-5">
       <div className="flex flex-row items-center gap-3 w-18">
