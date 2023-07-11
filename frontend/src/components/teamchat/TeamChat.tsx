@@ -116,6 +116,11 @@ function ChatInput({
         placeholder="Type a message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSend();
+          }
+        }}
       />
       <button className="bg-lime-900 rounded-xl p-3" onClick={handleSend}>
         Send
