@@ -9,6 +9,7 @@ import {
 
 export default function TeamChat() {
   const [messages, setMessages] = useState<string[]>([]); //["hi","hello"
+  const [sentMessages, setSentMessages] = useState<string[]>([]);
   const { token, setToken } = useContext(AuthContext);
   useEffect(() => {
     const abortController = new AbortController();
@@ -51,9 +52,11 @@ export default function TeamChat() {
         {messages.map((message) => (
           <RecievedMessage message={message} />
         ))}
-        <SentMessage message="hey" />
+        {sentMessages.map((message) => (
+          <SentMessage message={message} />
+        ))}
       </div>
-      <ChatInput setMessages={setMessages} />
+      <ChatInput setSentMessages={setSentMessages} />
     </>
   );
 }
@@ -73,9 +76,9 @@ function SentMessage({ message }: { message: string }) {
 }
 
 function ChatInput({
-  setMessages,
+  setSentMessages,
 }: {
-  setMessages: Dispatch<SetStateAction<string[]>>;
+  setSentMessages: Dispatch<SetStateAction<string[]>>;
 }) {
   const [message, setMessage] = useState("");
   const { token, setToken } = useContext(AuthContext);
@@ -100,7 +103,9 @@ function ChatInput({
         return res.json();
       })
       .then((data) => {
-        setMessages((messages) => [...messages, message]);
+        console.log(data);
+        setSentMessages((prev) => [...prev, message]);
+        setMessage("");
       });
   };
   return (
