@@ -2,17 +2,28 @@ import { AuthContext } from "@/context/AuthContext";
 import { useContext, useEffect, useState } from "react";
 
 export default function TeamChat() {
+  const [messages, setMessages] = useState<string[]>([]); //["hi","hello"
+  const { token, setToken } = useContext(AuthContext);
   useEffect(() => {
     const abortController = new AbortController();
     fetch("http://localhost:8000/chat/getMessage", {
       signal: abortController.signal,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 401) {
+            if (setToken) setToken(null);
+          }
+          throw new Error("HTTP Error " + res.status);
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
+        setMessages(data.value);
       });
     return () => {
       abortController.abort();
@@ -31,7 +42,9 @@ export default function TeamChat() {
         id="chat"
         className="bg-slate-800 p-6 rounded-xl flex flex-col gap-3 h-[30rem] max-h-[30rem] overflow-y-scroll relative pb-14"
       >
-        <RecievedMessage message="hi" />
+        {messages.map((message) => (
+          <RecievedMessage message={message} />
+        ))}
         <SentMessage message="hey" />
       </div>
       <ChatInput />
@@ -55,13 +68,13 @@ function SentMessage({ message }: { message: string }) {
 
 function ChatInput() {
   const [message, setMessage] = useState("");
-  const { setToken } = useContext(AuthContext);
+  const { token, setToken } = useContext(AuthContext);
   const handleSend = () => {
     if (message.trim() === "") return;
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
         body: JSON.stringify({ message }),
       },
