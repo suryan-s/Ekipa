@@ -1,5 +1,7 @@
+import json
+
 from fastapi import APIRouter, Depends, HTTPException, Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_500_INTERNAL_SERVER_ERROR
+from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 
 from backend.database.master import get_message, put_message
 from backend.register import get_user_id_from_token
@@ -23,8 +25,14 @@ async def post_chat(request: Request, token: str = Depends(get_current_token)):
             detail="Invalid or missing authorization token",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    incoming = await request.json()
-    incoming_message = incoming["message"]
+    try:
+        incoming = await request.json()
+    except json.JSONDecodeError:
+        raise HTTPException(
+            status_code=HTTP_400_BAD_REQUEST,
+            detail="Invalid JSON data",
+        )
+    incoming_message = incoming.get("message")
     result = await put_message(user_id, incoming_message)
     if isinstance(result, Exception):
         print(result)
@@ -32,7 +40,7 @@ async def post_chat(request: Request, token: str = Depends(get_current_token)):
             status_code=HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal Server Error",
         ) from result
-    return {"value": result}
+    return {"value": "Message sent"}
 
 
 @router.get("/getMessage")

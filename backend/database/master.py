@@ -356,9 +356,8 @@ async def put_message(sender_id, incoming_message):
     """
     try:
         team_id = await get_team_id(sender_id)
-        print(team_id)
-        query = """INSERT INTO Chat (team_id, sender_id, message) VALUES (?, ?)"""
-        args = (team_id, sender_id, incoming_message)
+        query = """INSERT INTO Chat (team_id, sender_id, message) VALUES (?, ?, ?)"""
+        args = (team_id[0][0], sender_id, incoming_message)
         await execute("query", query, args)
     except sqlite3.Error as e:
         print(f"The SQL statement failed with error: {e}")
