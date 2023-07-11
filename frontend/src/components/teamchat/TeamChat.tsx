@@ -1,5 +1,11 @@
 import { AuthContext } from "@/context/AuthContext";
-import { useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 export default function TeamChat() {
   const [messages, setMessages] = useState<string[]>([]); //["hi","hello"
@@ -47,7 +53,7 @@ export default function TeamChat() {
         ))}
         <SentMessage message="hey" />
       </div>
-      <ChatInput />
+      <ChatInput setMessages={setMessages} />
     </>
   );
 }
@@ -66,7 +72,11 @@ function SentMessage({ message }: { message: string }) {
   );
 }
 
-function ChatInput() {
+function ChatInput({
+  setMessages,
+}: {
+  setMessages: Dispatch<SetStateAction<string[]>>;
+}) {
   const [message, setMessage] = useState("");
   const { token, setToken } = useContext(AuthContext);
   const handleSend = () => {
@@ -90,8 +100,7 @@ function ChatInput() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        return data;
+        setMessages((messages) => [...messages, message]);
       });
   };
   return (
