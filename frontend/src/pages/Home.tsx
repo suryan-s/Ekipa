@@ -23,10 +23,13 @@ export default function Home() {
     </>
   );
 }
-
-function DataCard({ title, content }: { title: string; content: string }) {
+interface DataCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  content: string;
+}
+function DataCard({ title, content, ...props }: DataCardProps) {
   return (
-    <Card className="hover:bg-slate-800 hover:transition-colors">
+    <Card className="hover:bg-slate-800 hover:transition-colors" {...props}>
       <CardHeader>
         <CardTitle className="opacity-80">{title}</CardTitle>
       </CardHeader>
@@ -56,11 +59,23 @@ function DetailGrid() {
         return res.json();
       })
       .then((data) => {
-        setData(data);
+        setData(data.value[0]);
         console.log(data);
       })
       .catch((err) => console.log(err));
   }, []);
+  if (data.length === 0 || !data || data === undefined || data === null) {
+    return <p>Loading...</p>;
+  }
+  if (data[0] === null || data[0] === undefined || data[0] === "") {
+    return (
+      <DataCard
+        title="Information"
+        content="You are not currently allocated to a team! Make sure to communicate this."
+        className="mt-6"
+      />
+    );
+  }
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
       <DataCard title="Name" content="Ekipa" />
