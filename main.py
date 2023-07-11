@@ -30,12 +30,6 @@ async def startup():
 
     This function is executed when the application starts up. It calls the `create_tables` function
     to create necessary database tables.
-
-    Args:
-        None
-
-    Returns:
-        None
     """
     if os.path.exists(os.path.join("backend", "database", "ekipa.db")):
         pass

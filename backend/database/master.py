@@ -7,7 +7,10 @@ from dbutils.pooled_db import PooledDB
 pool = PooledDB(
     creator=sqlite3,
     database=os.path.join("backend", "database", "ekipa.db"),
-    maxconnections=10
+    mincached=1,
+    maxcached=20,
+    maxconnections=10,
+    maxusage=25
 )
 
 
@@ -23,7 +26,7 @@ async def execute(mode: str, query: str, args: tuple = None) -> list | None:
         list: The result of the query, or None if executing a script.
     """
     result = None
-    conn = pool.connection()
+    conn = pool.connection(shareable=False)
     cur = conn.cursor()
 
     if mode == 'query':
@@ -43,6 +46,7 @@ async def execute(mode: str, query: str, args: tuple = None) -> list | None:
 
     conn.commit()
     cur.close()
+    conn.close()
 
     return result
 
@@ -383,7 +387,7 @@ async def insert_task(task_name, task_description, task_type, stack, assigned_by
     """
     try:
         query = """
-        INSERT INTO Task (task_name, description, task_type, stack, assigned_by_id, due_date,task_priority )
+        INSERT INTO Task (task_name, description, task_type, stack, assigned_by_id, due_date,task_priority)
          VALUES (?, ?, ?, ?, ?, ?,?)
          """
         args = (task_name, task_description, task_type, stack, assigned_by, due_date, task_priority)
