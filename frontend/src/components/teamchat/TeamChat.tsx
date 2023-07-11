@@ -74,10 +74,10 @@ function ChatInput() {
     const payload = JSON.stringify({ message });
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
+      body: payload,
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        body: payload,
       },
     })
       .then((res) => {
