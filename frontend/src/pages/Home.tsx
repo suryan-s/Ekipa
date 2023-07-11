@@ -45,7 +45,7 @@ function DataCard({ title, content, ...props }: DataCardProps) {
 
 function DetailGrid() {
   const [data, setData] = useState<any[]>([]);
-  const { token, setToken } = useContext(AuthContext);
+  const { token, setToken, setTeam } = useContext(AuthContext);
   useEffect(() => {
     fetch("http://localhost:8000/user/teamDetails", {
       headers: {
@@ -68,6 +68,7 @@ function DetailGrid() {
     return <p>Loading...</p>;
   }
   if (data[0] === null || data[0] === undefined || data[0] === "") {
+    setTeam(null);
     return (
       <DataCard
         title="Information"
@@ -76,6 +77,7 @@ function DetailGrid() {
       />
     );
   }
+  setTeam(data[0]);
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
       <DataCard title="Name" content={data[0]} />
@@ -86,15 +88,33 @@ function DetailGrid() {
   );
 }
 function TabSection() {
+  const { team } = useContext(AuthContext);
   return (
     <Tabs defaultValue="tasks" className="mt-6">
       <TabsList>
-        <TabsTrigger value="teams">Teams</TabsTrigger>
-        <TabsTrigger value="myteam">My Team</TabsTrigger>
-        <TabsTrigger value="tasks">Tasks</TabsTrigger>
-        <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
-        <TabsTrigger value="notifications">Notifications</TabsTrigger>
-        <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
+        {(() => {
+          switch (team) {
+            case null:
+              return (
+                <>
+                  <TabsTrigger value="teams">Teams</TabsTrigger>
+                  <TabsTrigger value="tasks">Tasks</TabsTrigger>
+                  <TabsTrigger value="notifications">Notifications</TabsTrigger>
+                </>
+              );
+            default:
+              return (
+                <>
+                  <TabsTrigger value="teams">Teams</TabsTrigger>
+                  <TabsTrigger value="tasks">Tasks</TabsTrigger>
+                  <TabsTrigger value="notifications">Notifications</TabsTrigger>
+                  <TabsTrigger value="myteam">My Team</TabsTrigger>
+                  <TabsTrigger value="mytasks">My Tasks</TabsTrigger>
+                  <TabsTrigger value="teamchat">Teamchat</TabsTrigger>
+                </>
+              );
+          }
+        })()}
       </TabsList>
       <TabsContent value="teams">
         <Teams />
