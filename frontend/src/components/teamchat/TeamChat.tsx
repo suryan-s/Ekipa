@@ -71,12 +71,13 @@ function ChatInput() {
   const { token, setToken } = useContext(AuthContext);
   const handleSend = () => {
     if (message.trim() === "") return;
+    const payload = JSON.stringify({ message });
     fetch("http://localhost:8000/chat/postMessage", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        body: JSON.stringify({ message }),
+        body: payload,
       },
     })
       .then((res) => {
