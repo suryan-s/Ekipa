@@ -78,10 +78,10 @@ function DetailGrid() {
   }
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      <DataCard title="Name" content="Ekipa" />
-      <DataCard title="Total Members" content="5" />
-      <DataCard title="Pending Tasks" content="5" />
-      <DataCard title="Completed Tasks" content="4" />
+      <DataCard title="Name" content={data[0]} />
+      <DataCard title="Total Members" content={data[1]} />
+      <DataCard title="Pending Tasks" content={data[2]} />
+      <DataCard title="Completed Tasks" content={data[3]} />
     </div>
   );
 }
